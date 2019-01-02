@@ -10,5 +10,7 @@ class MenuModel {
 
 List<MenuModel> menu = [
   new MenuModel(
-      'BottomTBar with FloatButton', Icons.menu, '/BottomBarWithFloatButton')
+      'BottomTBar with FloatButton', Icons.menu, '/BottomBarWithFloatButton'),
+  new MenuModel('3D BottomNavigationBar', Icons.bubble_chart,
+      '/ThreeDimenssionBottomNavigationBar')
 ];
