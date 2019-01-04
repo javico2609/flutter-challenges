@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_flutter/data/trending.dart';
 
 class Trending extends StatelessWidget {
   @override
@@ -199,7 +200,64 @@ class Trending extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(),
+            child: Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: ListView.builder(
+                itemCount: trending.length,
+                itemBuilder: (context, index) {
+                  final item = trending[index];
+                  return Container(
+                    key: UniqueKey(),
+                    height: 170.0,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(item.title, style: TextStyle(fontSize: 16.0)),
+                            Text("View All",
+                                style: TextStyle(
+                                    fontSize: 16.0, color: Colors.blue)),
+                          ],
+                        ),
+                        SizedBox(height: 8.0),
+                        Row(
+                          children: item.items
+                              .map((product) => Expanded(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 3.0),
+                                      child: Column(
+                                        children: <Widget>[
+                                          new Container(
+                                            height: 100.0,
+                                            decoration: new BoxDecoration(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        5.0),
+                                                image: new DecorationImage(
+                                                    image: new NetworkImage(
+                                                        product.image),
+                                                    fit: BoxFit.cover)),
+                                          ),
+                                          SizedBox(height: 5.0),
+                                          Text(product.title,
+                                              style:
+                                                  new TextStyle(fontSize: 16.0),
+                                              textAlign: TextAlign.center)
+                                        ],
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                        SizedBox(height: 10.0),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
           )
         ],
       ),
