@@ -13,5 +13,6 @@ List<MenuModel> menu = [
       'BottomTBar with FloatButton', Icons.menu, '/BottomBarWithFloatButton'),
   new MenuModel('3D BottomNavigationBar', Icons.bubble_chart,
       '/ThreeDimenssionBottomNavigationBar'),
-  new MenuModel('Trending template', Icons.important_devices, '/Trending')
+  new MenuModel('Trending template', Icons.important_devices, '/Trending'),
+  new MenuModel('ProfileOne template', Icons.group, '/ProfileOne'),
 ];
