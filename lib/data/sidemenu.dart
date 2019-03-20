@@ -15,4 +15,5 @@ List<MenuModel> menu = [
       '/ThreeDimenssionBottomNavigationBar'),
   new MenuModel('Trending template', Icons.important_devices, '/Trending'),
   new MenuModel('ProfileOne template', Icons.group, '/ProfileOne'),
+  new MenuModel('WhasApp template', Icons.whatshot, '/WhatsApp'),
 ];

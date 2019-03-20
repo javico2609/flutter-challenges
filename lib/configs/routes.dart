@@ -3,6 +3,7 @@ import 'package:playground_flutter/pages/navigation-bars/3d_bottom_navigation_ba
 import 'package:playground_flutter/pages/navigation-bars/bottom_with_float_button.dart';
 import 'package:playground_flutter/pages/templates/profile-one.dart';
 import 'package:playground_flutter/pages/templates/trending.dart';
+import 'package:playground_flutter/pages/templates/whatsapp-clone/whatsapp_home.dart';
 
 var routes = {
   '/': (context) => MyHomePage(),
@@ -10,5 +11,6 @@ var routes = {
   '/ThreeDimenssionBottomNavigationBar': (context) =>
       new ThreeDimenssionBottomNavigationBar(),
   '/Trending': (context) => new Trending(),
-  '/ProfileOne': (context) => new ProfileOne()
+  '/ProfileOne': (context) => new ProfileOne(),
+  '/WhatsApp': (context) => new WhatsAppHome(),
 };
