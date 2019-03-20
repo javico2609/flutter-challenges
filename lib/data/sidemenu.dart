@@ -16,4 +16,6 @@ List<MenuModel> menu = [
   new MenuModel('Trending template', Icons.important_devices, '/Trending'),
   new MenuModel('ProfileOne template', Icons.group, '/ProfileOne'),
   new MenuModel('WhasApp template', Icons.whatshot, '/WhatsApp'),
+  new MenuModel('Greenery template', Icons.threesixty, '/Greenery'),
+  new MenuModel('Progress Button', Icons.blur_circular, '/ProgressButton'),
 ];
