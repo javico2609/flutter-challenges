@@ -25,18 +25,89 @@ class _GreeneryHomeState extends State<GreeneryHome> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 4,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(110))),
-            ),
+        children: <Widget>[buildTopSection(), buildBottomSection(context)],
+      ),
+    );
+  }
+
+  Widget buildTopSection() {
+    return Expanded(
+      flex: 4,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(110)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 35.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: 300.0,
+                child: Text(
+                  'Fiddle Leaf Fig Topiary',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
+                ),
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                '10" Nursery Pot',
+                style: TextStyle(color: Colors.black45),
+              ),
+              SizedBox(height: 12.0),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 3),
+                    child: Text(
+                      "\$",
+                      style: TextStyle(
+                          color: greenColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "85",
+                    style: TextStyle(
+                        color: greenColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              Spacer(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: FloatingActionButton(
+                      onPressed: () {},
+                      backgroundColor: greenColor,
+                      child: Icon(Icons.shopping_cart),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    width: 230.0,
+                    child: Image.network(
+                      productImage,
+                      fit: BoxFit.fill,
+                      alignment: Alignment.bottomCenter,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 40),
+            ],
           ),
-          buildBottomSection(context)
-        ],
+        ),
       ),
     );
   }
@@ -117,7 +188,7 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                         textBaseline: TextBaseline.alphabetic,
                         children: <Widget>[
                           Text(
-                            "+ 18",
+                            "+18",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
