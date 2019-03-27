@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_flutter/pages/templates/greenery-clone/greenery-details.dart';
 
 class GreeneryHome extends StatefulWidget {
   @override
@@ -88,7 +89,10 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => GreeneryDetailsPage()));
+                      },
                       backgroundColor: greenColor,
                       child: Icon(Icons.shopping_cart),
                     ),
