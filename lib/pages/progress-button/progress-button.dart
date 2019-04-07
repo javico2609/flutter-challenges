@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/components/ProgressButton/progress-button.dart' as ProgressButtonComponent;
+import 'package:playground_flutter/models/rates.model.dart';
+import 'package:playground_flutter/services/web.client.dart';
 
 class ProgressButton extends StatefulWidget {
   @override
@@ -13,6 +15,12 @@ class _ProgressButtonState extends State<ProgressButton> {
 
   Future<void> _createMovement(done) async {
     await Future.delayed(Duration(seconds: 1));
+
+   dynamic ratesResponse = await http.get('currency/latest'); 
+   RatesModel rates = RatesModel.fromSnapshot(ratesResponse["rates"]);
+   
+   print(ratesResponse);
+
     return done( Random().nextInt(50) % 2 == 0 ? true : false );
   }
 
