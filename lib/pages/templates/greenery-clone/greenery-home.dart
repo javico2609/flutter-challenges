@@ -17,47 +17,134 @@ class _GreeneryHomeState extends State<GreeneryHome> {
     return Scaffold(
       backgroundColor: greenColor,
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-        elevation: 0,
         backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[buildTopSection(), buildBottomSection(context)],
+        children: <Widget>[
+          buildTop(),
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 15),
+                  Text(
+                    "Planting",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      buildCardDetail(context, "250", "ml", "water"),
+                      buildCardDetail(context, "18", "ºC", "Sunshine"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
 
-  Widget buildTopSection() {
+  Container buildCardDetail(
+      BuildContext context, String value, String unit, String unitName) {
+    return Container(
+      height: 90,
+      width: MediaQuery.of(context).size.width / 2 - 50,
+      decoration: BoxDecoration(
+        color: darkGreenColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: <Widget>[
+              Text(
+                value,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(width: 5),
+              Text(
+                unit,
+                style: TextStyle(
+                  color: Colors.white70,
+                ),
+              )
+            ],
+          ),
+          Text(
+            unitName,
+            style: TextStyle(
+              color: Colors.white70,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildTop() {
     return Expanded(
       flex: 4,
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(110)),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(110),
+          ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35.0),
+          padding: const EdgeInsets.symmetric(horizontal: 35),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                width: 300.0,
+                width: 300,
                 child: Text(
-                  'Fiddle Leaf Fig Topiary',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
+                  "Fiddle Leaf Fig Topiary",
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 12),
               Text(
                 '10" Nursery Pot',
-                style: TextStyle(color: Colors.black45),
+                style: TextStyle(
+                  color: Colors.black54,
+                ),
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 12),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
@@ -66,40 +153,39 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                     child: Text(
                       "\$",
                       style: TextStyle(
-                          color: greenColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
+                        color: greenColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(width: 5),
                   Text(
                     "85",
                     style: TextStyle(
-                        color: greenColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  )
+                      color: greenColor,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: FloatingActionButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => GreeneryDetailsPage()));
-                      },
+                      onPressed: () {},
                       backgroundColor: greenColor,
                       child: Icon(Icons.shopping_cart),
                     ),
                   ),
                   Container(
                     alignment: Alignment.bottomCenter,
-                    width: 230.0,
+                    width: 230,
                     child: Image.network(
                       productImage,
                       fit: BoxFit.fill,
@@ -108,114 +194,9 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                   )
                 ],
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 35),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildBottomSection(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 35.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: 15),
-            Text(
-              "Planting",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  height: 90,
-                  width: MediaQuery.of(context).size.width / 2 - 50,
-                  decoration: BoxDecoration(
-                    color: darkGreenColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: <Widget>[
-                          Text(
-                            "250",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            "ml",
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        "water",
-                        style: TextStyle(color: Colors.white70),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 90,
-                  width: MediaQuery.of(context).size.width / 2 - 50,
-                  decoration: BoxDecoration(
-                    color: darkGreenColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: <Widget>[
-                          Text(
-                            "+18",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            "ºC",
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        "Sunshine",
-                        style: TextStyle(color: Colors.white70),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
       ),
     );
