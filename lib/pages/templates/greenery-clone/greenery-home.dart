@@ -178,7 +178,11 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((c) => GreeneryDetailsPage()),
+                        ));
+                      },
                       backgroundColor: greenColor,
                       child: Icon(Icons.shopping_cart),
                     ),
