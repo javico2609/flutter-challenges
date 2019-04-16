@@ -18,4 +18,5 @@ List<MenuModel> menu = [
   new MenuModel('WhasApp template', Icons.whatshot, '/WhatsApp'),
   new MenuModel('Greenery template', Icons.threesixty, '/Greenery'),
   new MenuModel('Progress Button', Icons.blur_circular, '/ProgressButton'),
+  new MenuModel('Daycare template', Icons.credit_card, '/Daycare'),
 ];
