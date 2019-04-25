@@ -19,4 +19,5 @@ List<MenuModel> menu = [
   new MenuModel('Greenery template', Icons.threesixty, '/Greenery'),
   new MenuModel('Progress Button', Icons.blur_circular, '/ProgressButton'),
   new MenuModel('Daycare template', Icons.credit_card, '/Daycare'),
+  new MenuModel('Real Estate template', Icons.home, '/RealEstate'),
 ];

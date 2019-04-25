@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color color1 = Color(0xff38bbad);
-Color color2 = Color(0xff9699A6);
-Color color3 = Color(0xff065967);
-Color color4 = Color(0xffB6C1C6);
-Color color5 = Color(0xff2b7a98);
-Color color6 = Color(0xff2eb7a9);
-Color color7 = Color(0xff54565B);
-Color color8 = Color(0xff5E7E89);
+Color color2 = Color(0xff2b7a98);
 
 class DaycareHome extends StatelessWidget {
   @override
@@ -24,13 +18,10 @@ class DaycareHome extends StatelessWidget {
           children: <Widget>[
             Container(
               width: width,
-              height: height * 0.30,
+              height: height * .30,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    color1,
-                    color5,
-                  ],
+                  colors: [color1, color2],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -40,9 +31,232 @@ class DaycareHome extends StatelessWidget {
             buildHeaderData(height, width),
             buildHeaderInfoCard(height, width),
             buildNotificationPanel(width, height),
-            buildBottomBar(width, context),
-            buildFloatingButton(height, width),
+            buildBottomBar(width),
+            buildFloatingButton(width, height),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildHeader(double width, double height) {
+    return Positioned(
+      top: 30,
+      child: Container(
+        width: width,
+        height: height * .30,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "DAYCARE",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Icon(
+                        Icons.notifications_none,
+                        color: Colors.white,
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 2,
+                        child: Container(
+                          height: 13,
+                          width: 13,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.red,
+                          ),
+                          child: Text(
+                            "5",
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildHeaderData(double height, double width) {
+    return Positioned(
+      top: (height * .30) / 2 - 40,
+      width: width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            height: 80,
+            width: 80,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: new Border.all(color: Color(0xff2eb7a9), width: 3),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: new NetworkImage(
+                      "https://images.csmonitor.com/csm/2012/11/babyinbucket.jpg?alias=standard_900x600nc"),
+                )),
+          ),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Hi Rose",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              Text(
+                ", Good Morning",
+                style: TextStyle(color: Colors.white70, fontSize: 16),
+              ),
+            ],
+          ),
+          Text(
+            "Today, 14 Aug 2017",
+            style: TextStyle(color: Colors.white70, fontSize: 13),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildHeaderInfoCard(double height, double width) {
+    return Positioned(
+      top: height * .30 - 25,
+      width: width,
+      child: Container(
+        alignment: Alignment.center,
+        child: Container(
+          height: 50,
+          width: width * .65,
+          child: Material(
+            elevation: 3,
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text("Check In"),
+                    Text(
+                      "9:00 AM",
+                      style: TextStyle(
+                        color: Color(0xff053150),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                Icon(
+                  Icons.access_time,
+                  size: 35,
+                  color: Colors.grey,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Check In"),
+                    Text(
+                      "NOT YET",
+                      style: TextStyle(
+                        color: Color(0xff053150),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildBottomBar(double width) {
+    return Positioned(
+      bottom: 0,
+      width: width,
+      child: Container(
+        height: 55,
+        width: width,
+        color: Colors.white,
+        child: Material(
+          elevation: 5,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: width / 3,
+                child: Icon(
+                  Icons.account_circle,
+                  size: 35,
+                  color: Color(0xff065967).withOpacity(0.7),
+                ),
+              ),
+              Container(width: width / 3),
+              Container(
+                width: width / 3,
+                child: Icon(
+                  Icons.assessment,
+                  size: 35,
+                  color: Color(0xff065967).withOpacity(0.7),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildFloatingButton(double width, double height) {
+    return Positioned(
+      top: height - 85,
+      width: width,
+      child: Container(
+        height: 70,
+        width: 70,
+        child: RawMaterialButton(
+          shape: CircleBorder(),
+          fillColor: Color(0xff1a9bb1),
+          elevation: 4,
+          onPressed: () {},
+          child: Icon(
+            Icons.menu,
+            size: 35,
+            color: Colors.white,
+          ),
         ),
       ),
     );
@@ -52,7 +266,7 @@ class DaycareHome extends StatelessWidget {
     return Positioned(
       width: width,
       height: height * .70 - 80,
-      top: height * .30 + 34,
+      top: height * 0.30 + 34,
       child: Padding(
         padding: const EdgeInsets.only(right: 16, left: 16, top: 10),
         child: SingleChildScrollView(
@@ -150,9 +364,9 @@ class DaycareHome extends StatelessWidget {
                           ],
                         ),
                         trailing: Container(
-                          padding: const EdgeInsets.only(right: 5),
                           height: 70,
                           width: 80,
+                          padding: const EdgeInsets.only(right: 5),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -170,8 +384,9 @@ class DaycareHome extends StatelessWidget {
                                 height: 30,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Color(0xff1abcaa)),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Color(0xff1abcaa),
+                                ),
                                 child: Text(
                                   "PLAY NOW",
                                   style: TextStyle(
@@ -231,10 +446,7 @@ class DaycareHome extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             gradient: LinearGradient(
-              colors: [
-                color1,
-                color5,
-              ],
+              colors: [color1, color2],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -269,11 +481,16 @@ class DaycareHome extends StatelessWidget {
           ],
         ),
         trailing: Container(
-          width: 70,
           height: 40,
+          width: 70,
           decoration: BoxDecoration(
-              border:
-                  Border(left: BorderSide(color: Colors.black26, width: 1))),
+            border: Border(
+              left: BorderSide(
+                width: 1,
+                color: Colors.black26,
+              ),
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.only(left: 5),
             child: Row(
@@ -293,231 +510,7 @@ class DaycareHome extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildFloatingButton(double height, double width) {
-    return Positioned(
-      top: height - 85,
-      width: width,
-      child: Container(
-        height: 70,
-        width: 70,
-        child: RawMaterialButton(
-          shape: new CircleBorder(),
-          fillColor: Color(0xff1a9bb1),
-          elevation: 4,
-          onPressed: () {},
-          child: Icon(
-            Icons.menu,
-            size: 35,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildBottomBar(double width, BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      width: width,
-      child: new Container(
-        height: 55.0,
-        width: width,
-        color: Colors.white,
-        child: Material(
-          color: Colors.white,
-          elevation: 5,
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              new Container(
-                width: MediaQuery.of(context).size.width / 3,
-                child: new Icon(
-                  Icons.account_circle,
-                  size: 35.0,
-                  color: Color(0xff065967).withOpacity(0.7),
-                ),
-              ),
-              new Container(width: MediaQuery.of(context).size.width / 3),
-              new Container(
-                width: MediaQuery.of(context).size.width / 3,
-                child: new Icon(
-                  Icons.assessment,
-                  size: 35.0,
-                  color: Color(0xff065967).withOpacity(0.7),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildHeaderInfoCard(double height, double width) {
-    return Positioned(
-      top: height * .30 - 25,
-      width: width,
-      child: Container(
-        alignment: Alignment.center,
-        child: Container(
-          height: 50,
-          width: width * .65,
-          child: Material(
-            elevation: 3,
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text("Check In"),
-                    Text(
-                      "9:00 AM",
-                      style: TextStyle(
-                        color: Color(0xff053150),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.access_time,
-                  size: 35,
-                  color: Colors.grey,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Check In"),
-                    Text(
-                      "NOT YET",
-                      style: TextStyle(
-                        color: Color(0xff053150),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildHeaderData(double height, double width) {
-    return Positioned(
-      top: (height * .30) / 2 - 40,
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            height: 80,
-            width: 80,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: new Border.all(color: color6, width: 3),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: new NetworkImage(
-                    "https://images.csmonitor.com/csm/2012/11/babyinbucket.jpg?alias=standard_900x600nc"),
-              ),
-            ),
-          ),
-          SizedBox(height: 5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Hi Rose",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              Text(
-                ", Good Morning",
-                style: TextStyle(color: Colors.white70, fontSize: 16),
-              ),
-            ],
-          ),
-          Text(
-            "Today, 14 Aug 2017",
-            style: TextStyle(color: Colors.white70, fontSize: 13),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildHeader(double width, double height) {
-    return Positioned(
-      top: 30,
-      child: Container(
-        width: width,
-        height: height * .30,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "DAYCARE",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Icon(
-                        Icons.notifications_none,
-                        color: Colors.white,
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 2,
-                        child: Container(
-                          height: 13,
-                          width: 13,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red,
-                          ),
-                          child: Text(
-                            "5",
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+        onTap: () {},
       ),
     );
   }
