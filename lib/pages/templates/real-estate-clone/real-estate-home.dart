@@ -10,23 +10,25 @@ class RealEstateHome extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: ExactAssetImage(
-                  "assets/images/map.png",
-                ),
-                fit: BoxFit.cover,
-                colorFilter: new ColorFilter.mode(
-                  Colors.white.withOpacity(0.7),
-                  BlendMode.hardLight,
-                ),
-              ),
-            ),
-          ),
+          _buildBackground(),
           _buildTopBar(),
           _buildBody(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBackground() {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: ExactAssetImage('assets/images/map.png'),
+          colorFilter: ColorFilter.mode(
+            Colors.white.withOpacity(0.7),
+            BlendMode.hardLight,
+          ),
+        ),
       ),
     );
   }
@@ -36,10 +38,10 @@ class RealEstateHome extends StatelessWidget {
       builder: (BuildContext context) {
         return Positioned(
           top: 30,
-          width: MediaQuery.of(context).size.width,
           height: 70,
+          width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -56,15 +58,15 @@ class RealEstateHome extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    )
                   ],
                 ),
-                new CircleAvatar(
+                CircleAvatar(
                   foregroundColor: Theme.of(context).primaryColor,
                   backgroundColor: Colors.grey,
-                  backgroundImage: new NetworkImage(
+                  backgroundImage: NetworkImage(
                       "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
-                ),
+                )
               ],
             ),
           ),
@@ -79,7 +81,7 @@ class RealEstateHome extends StatelessWidget {
         return Positioned(
           top: 90,
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             height: MediaQuery.of(context).size.height - 100,
             width: MediaQuery.of(context).size.width,
             child: Column(
@@ -129,20 +131,20 @@ class RealEstateHome extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      alignment: Alignment.centerRight,
                       width: 50,
+                      alignment: Alignment.center,
                       child: Stack(
                         children: <Widget>[
                           Icon(
                             Icons.notifications_none,
-                            color: Color(0xff7645c7),
                             size: 35,
+                            color: Color(0xff7645c7),
                           ),
                           Positioned(
                             top: -1,
                             right: 2,
                             child: Container(
-                              padding: EdgeInsets.all(4),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Color(0xfffd8c00),
@@ -165,128 +167,128 @@ class RealEstateHome extends StatelessWidget {
                 SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: realEstatesResult.length,
-                    itemBuilder: (BuildContext c, int index) {
-                      final RealEstateModel item = realEstatesResult[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Stack(
-                          children: <Widget>[
-                            LayoutBuilder(
-                              builder:
-                                  (BuildContext c, BoxConstraints constraints) {
-                                return Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * .65,
-                                  height: constraints.maxHeight - 20,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: realEstatesResult.length,
+                      itemBuilder: (BuildContext c, int index) {
+                        final RealEstateModel item = realEstatesResult[index];
+
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Stack(
+                            children: <Widget>[
+                              LayoutBuilder(
+                                builder: (BuildContext c,
+                                    BoxConstraints constraints) {
+                                  return Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .65,
+                                    height: constraints.maxHeight - 20,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(item.img),
+                                        colorFilter: ColorFilter.mode(
+                                          Colors.black.withOpacity(0.2),
+                                          BlendMode.hardLight,
+                                        ),
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(35),
+                                        bottomLeft: Radius.circular(35),
+                                        bottomRight: Radius.circular(35),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              Positioned(
+                                top: 15,
+                                left: 15,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 55,
+                                  width: 55,
                                   decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(item.img),
-                                      fit: BoxFit.cover,
-                                      colorFilter: new ColorFilter.mode(
-                                        Colors.black.withOpacity(0.2),
-                                        BlendMode.hardLight,
-                                      ),
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(35),
-                                      bottomLeft: Radius.circular(35),
-                                      bottomRight: Radius.circular(35),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 15,
-                              child: Container(
-                                alignment: Alignment.center,
-                                height: 55,
-                                width: 55,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.white,
-                                  ),
-                                  color: Color(0xff7645c7),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      item.priceOff,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Off',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 10,
-                              child: Container(
-                                height: 45,
-                                width: 45,
-                                decoration: BoxDecoration(
-                                  color: Color(0xfffd8b00),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.navigate_next,
-                                  color: Colors.white,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 35,
-                              left: 10,
-                              width: MediaQuery.of(context).size.width * .65,
-                              child: ListTile(
-                                title: Text(
-                                  item.name,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                subtitle: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.pin_drop,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      width: 2,
                                       color: Colors.white,
-                                      size: 18,
                                     ),
-                                    Text(
-                                      item.address,
-                                      style: TextStyle(
-                                        color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        item.priceOff,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Text(
+                                        'Off',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  height: 45,
+                                  width: 45,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xfffd8b00),
+                                  ),
+                                  child: Icon(
+                                    Icons.navigate_next,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 35,
+                                left: 10,
+                                width: MediaQuery.of(context).size.width * .65,
+                                child: ListTile(
+                                  title: Text(
+                                    item.name,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  subtitle: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.pin_drop,
+                                        color: Colors.white,
+                                        size: 18,
+                                      ),
+                                      Text(
+                                        item.address,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
                 ),
-                RealEstateBottomBar(),
+                RealEstateBottomBar()
               ],
             ),
           ),

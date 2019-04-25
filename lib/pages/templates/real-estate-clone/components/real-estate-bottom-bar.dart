@@ -15,13 +15,11 @@ class _RealEstateBottomBarState extends State<RealEstateBottomBar>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animation = new Tween(begin: 0.0, end: 1.0).animate(
-      new CurvedAnimation(
-        parent: _controller,
-        curve: Curves.elasticOut,
-      ),
-    );
+        new CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
+
     _controller.forward();
   }
 
@@ -47,22 +45,24 @@ class _RealEstateBottomBarState extends State<RealEstateBottomBar>
   Widget _buildTab(String text, IconData icon, int index) {
     return _currentActiveTab == index
         ? RealEstateActiveTab(
-            animation: _animation,
-            key: Key(text),
-            icon: icon,
-            text: text,
-          )
-        : InkWell(
-            onTap: () {
-              setState(() {
-                _currentActiveTab = index;
-                _controller.reset();
-                _controller.forward();
-              });
-            },
-            child: Icon(
-              icon,
-              size: 35,
+          animation: _animation,
+          key: Key(text),
+          text: text,
+          icon: icon,
+        )
+        : Material(
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _currentActiveTab = index;
+                  _controller.reset();
+                  _controller.forward();
+                });
+              },
+              child: Icon(
+                icon,
+                size: 35,
+              ),
             ),
           );
   }
