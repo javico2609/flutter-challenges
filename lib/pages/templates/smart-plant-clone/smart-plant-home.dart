@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:playground_flutter/pages/templates/smart-plant-clone/chart-painter.dart';
+
 class SmartPlantHome extends StatelessWidget {
   const SmartPlantHome({Key key}) : super(key: key);
 
@@ -41,11 +43,288 @@ class SmartPlantHome extends StatelessWidget {
             children: <Widget>[
               buildTitleBar(padding, width),
               buildTopBarNavigation(padding, width),
+              Positioned(
+                top: 110,
+                left: padding,
+                width: width,
+                height: height - 230,
+                child: Column(
+                  children: <Widget>[
+                    buildInfoSection(width),
+                    buildDailySection(width),
+                    buildARSection(width)
+                  ],
+                ),
+              ),
               buildBottomNavBar(padding, width)
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildInfoSection(double width) {
+    return Flexible(
+      flex: 3,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        alignment: Alignment.centerLeft,
+        child: Container(
+          width: width * .8,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Image.asset(
+                  'assets/images/leaves.png',
+                  fit: BoxFit.contain,
+                ),
+                // ExactAssetImage("assets/images/leaves.png")
+              ),
+              SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 20),
+                  Text(
+                    "35%",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    height: 30,
+                    width: width * .5,
+                    child: CustomPaint(
+                      foregroundPainter: ChartPainter(),
+                    ),
+                  ),
+                  Text(
+                    "250 ml",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "Nedd more water",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildDailySection(double width) {
+    return Flexible(
+      flex: 2,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        alignment: Alignment.centerLeft,
+        child: Container(
+          width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                "Daily Plants",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    buildDailyPlantItem(width),
+                    buildDailyPlantItem(width),
+                    buildDailyPlantItem(width),
+                    buildDailyPlantItem(width),
+                    buildDailyPlantItem(width),
+                    buildDailyPlantItem(width),
+                    SizedBox(width: 50)
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildARSection(double width) {
+    return Flexible(
+      flex: 3,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        alignment: Alignment.centerLeft,
+        child: Container(
+          width: width * .8,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                "Advertise",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: ExactAssetImage(
+                                    "assets/images/ar-glasses.png"),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "AR Mode",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Container(
+                                width: width * .5,
+                                child: Text(
+                                  "Introduce new tools to recognize your garden",
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: Text(
+                          "Read more",
+                          style: TextStyle(
+                            color: Color(0xff2f61e9),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildDailyPlantItem(double width) {
+    return LayoutBuilder(
+      builder: (BuildContext c, BoxConstraints constraints) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Container(
+            width: width * .5,
+            height: constraints.maxHeight,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: ExactAssetImage("assets/images/cactus.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: 5),
+                    Text(
+                      "Room Plants",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.alarm,
+                          size: 15,
+                        ),
+                        Text("2:00 PM")
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.alarm,
+                          size: 15,
+                        ),
+                        Text("2:00 PM")
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
