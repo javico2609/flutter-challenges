@@ -30,7 +30,7 @@ class RealEstateDetails extends StatelessWidget {
             ),
             Positioned(
               width: MediaQuery.of(context).size.width,
-              top: MediaQuery.of(context).size.height * .4 - 80,
+              top: MediaQuery.of(context).size.height * .4 - 90,
               child: Padding(
                 padding: const EdgeInsets.only(left: 30, right: 16),
                 child: Row(
@@ -39,6 +39,7 @@ class RealEstateDetails extends StatelessWidget {
                     Icon(
                       Icons.rotate_90_degrees_ccw,
                       color: Colors.white,
+                      size: 35,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,6 +71,7 @@ class RealEstateDetails extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           "\$4,999",
@@ -81,7 +83,7 @@ class RealEstateDetails extends StatelessWidget {
                         ),
                         Icon(
                           Icons.bookmark_border,
-                          size: 35,
+                          size: 30,
                         )
                       ],
                     ),
@@ -120,6 +122,85 @@ class RealEstateDetails extends StatelessWidget {
                     Divider(
                       color: Colors.grey,
                       height: 2,
+                    ),
+                    SizedBox(height: 15),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Home Loan Calculator",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: const EdgeInsets.all(0),
+                            title: Text(
+                              "\$1,602/month",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "Estimated repayment",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
+                            trailing: Container(
+                              alignment: Alignment.center,
+                              width: 80,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    width: 10,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFfed19a),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 25,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xFF632bbf),
+                                    ),
+                                    child: Icon(
+                                      Icons.question_answer,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 10,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFfed19a),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Spacer(),
                     Row(
