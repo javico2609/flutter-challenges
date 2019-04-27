@@ -43,22 +43,140 @@ class SmartPlantHome extends StatelessWidget {
             children: <Widget>[
               buildTitleBar(padding, width),
               buildTopBarNavigation(padding, width),
-              Positioned(
-                top: 110,
-                left: padding,
-                width: width,
-                height: height - 230,
+              buildBody(padding, width, height),
+              buildBottomNavBar(padding, width),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTitleBar(double padding, double width) {
+    return Positioned(
+      left: padding,
+      top: 20,
+      width: width * .8,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.ideographic,
+        children: <Widget>[
+          Text(
+            "Home",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            "25 ºC",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTopBarNavigation(double padding, double width) {
+    return Positioned(
+      left: padding,
+      top: 65,
+      width: width,
+      height: 35,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(right: 50),
+        children: <Widget>[
+          buildNavItem("Today", true),
+          buildNavItem("Tomorrow", false),
+          buildNavItem("April 17", false),
+          buildNavItem("April 18", false),
+          buildNavItem("April 19", false),
+          buildNavItem("April 20", false),
+          buildNavItem("April 21", false),
+          buildNavItem("April 22", false),
+          buildNavItem("April 23", false),
+        ],
+      ),
+    );
+  }
+
+  Widget buildBody(double padding, double width, double height) {
+    return Positioned(
+      top: 110,
+      left: padding,
+      width: width,
+      height: height - 230,
+      child: Column(
+        children: <Widget>[
+          buildInfoSection(width),
+          buildDailySection(width),
+          buildARSection(width)
+        ],
+      ),
+    );
+  }
+
+  Widget buildBottomNavBar(double padding, double width) {
+    return Positioned(
+      bottom: 20,
+      left: padding,
+      child: Container(
+        width: width * .8,
+        padding: const EdgeInsets.all(5),
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Container(
+                width: 50,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    buildInfoSection(width),
-                    buildDailySection(width),
-                    buildARSection(width)
+                    Icon(Icons.domain),
+                    Container(
+                      height: 2,
+                      width: 2,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              buildBottomNavBar(padding, width)
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -81,7 +199,6 @@ class SmartPlantHome extends StatelessWidget {
                   'assets/images/leaves.png',
                   fit: BoxFit.contain,
                 ),
-                // ExactAssetImage("assets/images/leaves.png")
               ),
               SizedBox(width: 10),
               Column(
@@ -121,7 +238,7 @@ class SmartPlantHome extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -138,8 +255,8 @@ class SmartPlantHome extends StatelessWidget {
         child: Container(
           width: width,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 "Daily Plants",
@@ -159,10 +276,10 @@ class SmartPlantHome extends StatelessWidget {
                     buildDailyPlantItem(width),
                     buildDailyPlantItem(width),
                     buildDailyPlantItem(width),
-                    SizedBox(width: 50)
+                    SizedBox(width: 50),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -205,8 +322,8 @@ class SmartPlantHome extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            height: 60,
                             width: 60,
+                            height: 60,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: ExactAssetImage(
@@ -231,17 +348,14 @@ class SmartPlantHome extends StatelessWidget {
                                 child: Text(
                                   "Introduce new tools to recognize your garden",
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
                                 ),
-                              )
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 15),
+                        padding: const EdgeInsets.only(right: 10),
                         child: Text(
                           "Read more",
                           style: TextStyle(
@@ -249,12 +363,12 @@ class SmartPlantHome extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 10)
+              SizedBox(height: 10),
             ],
           ),
         ),
@@ -319,126 +433,12 @@ class SmartPlantHome extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                   ],
-                )
+                ),
               ],
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget buildTitleBar(double padding, double width) {
-    return Positioned(
-      left: padding,
-      top: 20,
-      width: width * .8,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.ideographic,
-        children: <Widget>[
-          Text(
-            "Home",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "25 ºC",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildBottomNavBar(double padding, double width) {
-    return Positioned(
-      bottom: 20,
-      left: padding,
-      child: Container(
-        width: width * .8,
-        padding: const EdgeInsets.all(5),
-        height: 60,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Container(
-                width: 50,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.domain),
-                    Container(
-                      height: 2,
-                      width: 2,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildTopBarNavigation(double padding, double width) {
-    return Positioned(
-      left: padding,
-      top: 65,
-      width: width,
-      height: 35,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(right: 50),
-        children: <Widget>[
-          buildNavItem("Today", true),
-          buildNavItem("Tomorrow", false),
-          buildNavItem("April 17", false),
-          buildNavItem("April 18", false),
-          buildNavItem("April 19", false),
-          buildNavItem("April 20", false),
-          buildNavItem("April 21", false),
-          buildNavItem("April 22", false),
-          buildNavItem("April 23", false),
-        ],
-      ),
     );
   }
 }
@@ -450,9 +450,8 @@ Widget buildNavItem(String msg, [bool active = false]) {
       alignment: Alignment.center,
       width: 70,
       decoration: BoxDecoration(
-        color: active ? Color(0xff47a37f) : Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
-      ),
+          color: active ? Color(0xff47a37f) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20)),
       child: Text(
         msg,
         style: TextStyle(
