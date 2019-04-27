@@ -20,4 +20,6 @@ List<MenuModel> menu = [
   new MenuModel('Progress Button', Icons.blur_circular, '/ProgressButton'),
   new MenuModel('Daycare template', Icons.credit_card, '/Daycare'),
   new MenuModel('Real Estate template', Icons.home, '/RealEstate'),
+  new MenuModel(
+      'Smart Plant template', Icons.assignment_turned_in, '/SmartPlant'),
 ];
