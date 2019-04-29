@@ -22,4 +22,6 @@ List<MenuModel> menu = [
   new MenuModel('Real Estate template', Icons.home, '/RealEstate'),
   new MenuModel(
       'Smart Plant template', Icons.assignment_turned_in, '/SmartPlant'),
+  new MenuModel('Hospital Dashboard template', Icons.markunread_mailbox,
+      '/HospitalDashboard'),
 ];
