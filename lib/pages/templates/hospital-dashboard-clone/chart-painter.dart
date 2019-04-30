@@ -37,7 +37,7 @@ class ChartPainter extends CustomPainter {
     canvas.drawPath(
       dashPath(
         backgroundPath,
-        dashArray: CircularIntervalList<double>(<double>[3, 6]),
+        dashArray: CircularIntervalList(<double>[3, 6]),
       ),
       backgroundPaint,
     );
