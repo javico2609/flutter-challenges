@@ -3,8 +3,10 @@ import 'package:playground_flutter/pages/navigation-bars/3d_bottom_navigation_ba
 import 'package:playground_flutter/pages/navigation-bars/bottom_with_float_button.dart';
 import 'package:playground_flutter/pages/progress-button/progress-button.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
+import 'package:playground_flutter/pages/templates/furniture-clone/furniture-home.dart';
 import 'package:playground_flutter/pages/templates/greenery-clone/greenery-home.dart';
 import 'package:playground_flutter/pages/templates/hospital-dashboard-clone/hospital-dashboard-home.dart';
+import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-home.dart';
 import 'package:playground_flutter/pages/templates/profile-one.dart';
 import 'package:playground_flutter/pages/templates/real-estate-clone/real-estate-home.dart';
 import 'package:playground_flutter/pages/templates/smart-plant-clone/smart-plant-home.dart';
@@ -25,4 +27,6 @@ var routes = {
   '/RealEstate': (context) => new RealEstateHome(),
   '/SmartPlant': (context) => new SmartPlantHome(),
   '/HospitalDashboard': (context) => new HospitalDashboardHome(),
+  '/NewsAppConcept': (context) => new NewsAppConceptHome(),
+  '/Furniture': (context) => new FurnitureHome(),
 };

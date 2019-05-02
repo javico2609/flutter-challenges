@@ -24,4 +24,7 @@ List<MenuModel> menu = [
       'Smart Plant template', Icons.assignment_turned_in, '/SmartPlant'),
   new MenuModel('Hospital Dashboard template', Icons.markunread_mailbox,
       '/HospitalDashboard'),
+  new MenuModel(
+      'News App Concept template', Icons.open_in_new, '/NewsAppConcept'),
+  new MenuModel('Furniture template', Icons.pages, '/Furniture'),
 ];

@@ -10,8 +10,12 @@ ThemeData getThemeByType(Themes type) {
       return ThemeData(
         primaryColor: new Color(0xff075E54),
         accentColor: new Color(0xff25D366),
+        canvasColor: Colors.transparent,
       );
     default:
-      ThemeData.light();
+      ThemeData(
+        brightness: Brightness.light,
+        canvasColor: Colors.transparent,
+      );
   }
 }
