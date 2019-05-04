@@ -21,7 +21,7 @@
 
 > Si encontró útil este proyecto o aprendió algo del código fuente y quiere agradecerme, considere comprarme una taza de café. : )
 >
-> If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of : )
+> If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of cofee : )
 >
 > - [PayPal](https://www.paypal.me/javierglezrdguez)
 
