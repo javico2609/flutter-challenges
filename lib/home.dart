@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
                 trailing: new Icon(menu[index].icon),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, menu[index].route);
+                  Navigator.pushReplacementNamed(context, menu[index].route);
                 },
               ),
         ),
