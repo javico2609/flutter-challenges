@@ -12,9 +12,9 @@
 
 ## Social links
 
-[YouTube Channel](https://www.youtube.com/channel/UCF9uKbahHOibtuJdHxbCF9A)
 <a href="https://twitter.com/javico_glez"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a>
 <a href="https://www.linkedin.com/in/javier-gonzalez-843a2597/"><img src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true" width="60"></a>
+<a href="https://www.youtube.com/channel/UCF9uKbahHOibtuJdHxbCF9A"><img src="http://pngimg.com/uploads/youtube/youtube_PNG12.png" width="60" height="60"></a>
 
 ### Show some :heart: and star the repo to support the project
 
