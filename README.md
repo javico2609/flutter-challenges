@@ -18,7 +18,7 @@
 
 ### Show some :heart: and star the repo to support the project
 
-[![GitHub stars](https://img.shields.io/github/stars/javico2609/flutter-challenges.svg?style=social&label=Star)](https://github.com/javico2609/flutter-challenges) [![GitHub forks](https://img.shields.io/github/forks/javico2609/flutter-challenges.svg?style=social&label=Fork)](https://github.com/javico2609/flutter-challenges/fork) [![GitHub watchers](https://img.shields.io/github/watchers/javico2609/flutter-challenges.svg?style=social&label=Watch)](https://github.com/javico2609/flutter-challenges) [![GitHub followers](https://img.shields.io/github/followers/iampawan.svg?style=social&label=Follow)](https://github.com/javico2609/flutter-challenges)
+[![GitHub stars](https://img.shields.io/github/stars/javico2609/flutter-challenges.svg?style=social&label=Star)](https://github.com/javico2609/flutter-challenges) [![GitHub forks](https://img.shields.io/github/forks/javico2609/flutter-challenges.svg?style=social&label=Fork)](https://github.com/javico2609/flutter-challenges/fork) [![GitHub watchers](https://img.shields.io/github/watchers/javico2609/flutter-challenges.svg?style=social&label=Watch)](https://github.com/javico2609/flutter-challenges) [![GitHub followers](https://img.shields.io/github/followers/javico2609.svg?style=social&label=Follow)](https://github.com/javico2609/flutter-challenges)
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/javico2609/flutter-challenges/blob/master/licence.txt)
