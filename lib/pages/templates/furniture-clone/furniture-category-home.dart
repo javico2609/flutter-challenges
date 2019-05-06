@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 Color primaryColor = Color(0xffdc2f2e);
 
-class FurnitureCategoryHome extends StatelessWidget {
+class FurnitureCategoryHome extends StatefulWidget {
   FurnitureCategoryHome({Key key}) : super(key: key);
 
+  @override
+  _FurnitureCategoryHomeState createState() => _FurnitureCategoryHomeState();
+}
+
+class _FurnitureCategoryHomeState extends State<FurnitureCategoryHome> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -89,25 +94,168 @@ class FurnitureCategoryHome extends StatelessWidget {
                       Icons.tune,
                       size: 32.0,
                     ),
-                    onTap: () {
-                      showModalBottomSheet(
+                    onTap: () async {
+                      await showModalBottomSheet(
                         context: context,
                         builder: (BuildContext c) {
-                          return new Container(
-                            height: 350.0,
-                            color: Colors
-                                .transparent, //could change this to Color(0xFF737373),
-                            //so you don't have to change MaterialApp canvasColor
+                          return GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {},
                             child: new Container(
-                              decoration: new BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: new BorderRadius.only(
-                                  topLeft: const Radius.circular(10.0),
-                                  topRight: const Radius.circular(10.0),
+                              height: height * .8,
+                              color: Color(0xFF737373),
+                              child: new Container(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  bottom: 10,
                                 ),
-                              ),
-                              child: new Center(
-                                child: new Text("This is a modal sheet"),
+                                decoration: new BoxDecoration(
+                                  color: Theme.of(context).canvasColor,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(30.0),
+                                    topRight: const Radius.circular(30.0),
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 20,
+                                        right: 20,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            "Sort & Filter",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: Colors.black,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: true,
+                                      chlid: Text(
+                                        "Sort by",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: false,
+                                      chlid: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.access_time),
+                                          SizedBox(width: 10),
+                                          Text("Latest"),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.check,
+                                            color: primaryColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: false,
+                                      chlid: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.access_time),
+                                          SizedBox(width: 10),
+                                          Text("Popularity"),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.check,
+                                            color: primaryColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: false,
+                                      chlid: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.access_time),
+                                          SizedBox(width: 10),
+                                          Text("Low to High Prices"),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.check,
+                                            color: primaryColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: false,
+                                      chlid: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(Icons.access_time),
+                                          SizedBox(width: 10),
+                                          Text("High to Low Prices"),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.check,
+                                            color: primaryColor,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    _buildBottomModalItem(
+                                      width: width,
+                                      isDivider: true,
+                                      chlid: Text(
+                                        "Filter by",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    Spacer(),
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -187,6 +335,36 @@ class FurnitureCategoryHome extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Container _buildBottomModalItem({
+    double width,
+    Widget chlid,
+    bool isDivider = false,
+  }) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+      ),
+      width: width,
+      height: 40,
+      decoration: BoxDecoration(
+        color: isDivider ? Colors.grey[200] : Colors.white,
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey[400],
+            width: 0.5,
+          ),
+          top: BorderSide(
+            color: Colors.grey[400],
+            width: 0.5,
+          ),
+        ),
+      ),
+      child: chlid,
     );
   }
 
