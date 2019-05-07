@@ -5,12 +5,12 @@ import 'package:playground_flutter/pages/templates/news-app-concept-clone/catego
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-details.dart';
 
 String img =
-    "https://i.pinimg.com/originals/77/d6/79/77d679bb5ba328796061202510f30bf2.jpg";
+    "https://passivehouseplus.ie/media/k2/items/cache/fc5d9d8578a06f6d4c69c78df34d3f3a_XL.jpg?t=-62169984000";
 String avatar =
     "https://heavyeditorial.files.wordpress.com/2017/07/jessica-johnson-5.jpg?w=531&quality=65&strip=all&h=531";
 
 String img2 =
-    "http://www.sequencememoizer.com/wp-content/uploads/2018/10/fachadas-de-casas-modernas-treinta-y-ocho-dise-os-hermosas-ideas-fotos-de-disenos-de-casas-modernas.jpg";
+    "http://www.dubaiweek.ae/wp-content/uploads/2017/10/Krusty-The-Cone-1-e1507813664264.jpg";
 
 class NewsAppConceptHome extends StatelessWidget {
   const NewsAppConceptHome({Key key}) : super(key: key);
@@ -92,7 +92,7 @@ class NewsAppConceptHome extends StatelessWidget {
                             "Recommend",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w600,
                               fontSize: 20,
                             ),
                           ),
@@ -199,7 +199,7 @@ class NewsAppConceptHome extends StatelessWidget {
                         child: ListTile(
                           contentPadding: EdgeInsets.all(0),
                           title: Text(
-                            "Beatiful House in Malang",
+                            "Ice Cream to Happy day",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
