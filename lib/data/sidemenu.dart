@@ -4,8 +4,9 @@ class MenuModel {
   IconData icon;
   String title;
   String route;
+  bool isRoot;
 
-  MenuModel(this.title, this.icon, this.route);
+  MenuModel([this.title, this.icon, this.route, this.isRoot = false]);
 }
 
 List<MenuModel> menu = [
@@ -26,5 +27,6 @@ List<MenuModel> menu = [
       '/HospitalDashboard'),
   new MenuModel(
       'News App Concept template', Icons.open_in_new, '/NewsAppConcept'),
-  new MenuModel('Furniture template', Icons.pages, '/Furniture'),
+  new MenuModel('Furniture template', Icons.pages, '/Furniture', true),
+  new MenuModel('GameOrganizer template', Icons.pages, '/GameOrganizer', true),
 ];

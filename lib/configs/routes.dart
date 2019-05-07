@@ -5,6 +5,7 @@ import 'package:playground_flutter/pages/progress-button/progress-button.dart';
 import 'package:playground_flutter/pages/templates/chat.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
 import 'package:playground_flutter/pages/templates/furniture-clone/furniture-home.dart';
+import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-home.dart';
 import 'package:playground_flutter/pages/templates/greenery-clone/greenery-home.dart';
 import 'package:playground_flutter/pages/templates/hospital-dashboard-clone/hospital-dashboard-home.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-home.dart';
@@ -30,4 +31,5 @@ var routes = {
   '/HospitalDashboard': (context) => new HospitalDashboardHome(),
   '/NewsAppConcept': (context) => new NewsAppConceptHome(),
   '/Furniture': (context) => new FurnitureHome(),
+  '/GameOrganizer': (context) => new GameOrganizerHome(),
 };
