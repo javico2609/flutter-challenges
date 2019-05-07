@@ -42,75 +42,90 @@ class NewsAppConceptHome extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomBar(
-        onChangeActiveTab: (int index) {},
-      ),
       body: Container(
         width: width,
         height: height,
-        child: Column(
+        child: Stack(
           children: <Widget>[
-            SizedBox(height: 10),
-            CategoriesNavigator(
-              categories: ["Latest", "Decorative", "Music", "Style", "Sport"],
-              onChangeActiveTab: (int index) {},
-            ),
-            SizedBox(height: 10),
-            Flexible(
-              flex: 1,
-              child: LayoutBuilder(
-                builder: (BuildContext c, BoxConstraints constraints) {
-                  return ListView(
-                    padding: const EdgeInsets.only(left: 20),
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      _buildItem(width, constraints),
-                      SizedBox(width: 15),
-                      _buildItem(width, constraints),
-                      SizedBox(width: 15),
-                    ],
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 10),
-            Flexible(
-              flex: 1,
-              child: LayoutBuilder(
-                  builder: (BuildContext c, BoxConstraints constraints) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Recommend",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 23,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Expanded(
-                        child: Container(
-                          height: constraints.maxHeight,
-                          width: constraints.maxWidth,
-                          child: ListView(
-                            children: <Widget>[
-                              _buildRecommendItem(constraints),
-                              SizedBox(height: 10),
-                              _buildRecommendItem(constraints),
-                              SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+            Column(
+              children: <Widget>[
+                SizedBox(height: 10),
+                CategoriesNavigator(
+                  categories: [
+                    "Latest",
+                    "Decorative",
+                    "Music",
+                    "Style",
+                  ],
+                  onChangeActiveTab: (int index) {},
+                ),
+                SizedBox(height: 10),
+                Flexible(
+                  flex: 1,
+                  child: LayoutBuilder(
+                    builder: (BuildContext c, BoxConstraints constraints) {
+                      return ListView(
+                        padding: const EdgeInsets.only(left: 20),
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          _buildItem(width, constraints),
+                          SizedBox(width: 15),
+                          _buildItem(width, constraints),
+                          SizedBox(width: 15),
+                        ],
+                      );
+                    },
                   ),
-                );
-              }),
+                ),
+                SizedBox(height: 5),
+                Flexible(
+                  flex: 1,
+                  child: LayoutBuilder(
+                      builder: (BuildContext c, BoxConstraints constraints) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Recommend",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Expanded(
+                            child: Container(
+                              height: constraints.maxHeight,
+                              width: constraints.maxWidth,
+                              child: ListView(
+                                children: <Widget>[
+                                  _buildRecommendItem(constraints),
+                                  SizedBox(height: 10),
+                                  _buildRecommendItem(constraints),
+                                  SizedBox(height: 10),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+                ),
+                SizedBox(height: 60),
+              ],
+            ),
+            Positioned(
+              bottom: 0,
+              width: width,
+              height: 70,
+              child: BottomBar(
+                onChangeActiveTab: (int index) {},
+              ),
             ),
           ],
         ),
@@ -119,7 +134,7 @@ class NewsAppConceptHome extends StatelessWidget {
   }
 
   Widget _buildRecommendItem(BoxConstraints constraints) {
-    double height = constraints.maxHeight * .55;
+    double height = constraints.maxHeight * .50;
 
     return Container(
       height: height,
@@ -131,54 +146,84 @@ class NewsAppConceptHome extends StatelessWidget {
             bottom: 0,
             width: constraints.maxWidth - 70,
             height: height - 15,
-            child: Container(
-              padding: EdgeInsets.only(left: constraints.maxWidth * .25),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
-                boxShadow: shadow1,
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 0.5,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.only(right: 8),
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        backgroundImage: new NetworkImage(avatar),
-                      ),
-                      title: Text("by Lynne William"),
-                      subtitle: Text("January 23, 2019"),
-                      trailing: Icon(
-                        Icons.favorite,
-                        color: Color(0xffff8993),
-                      ),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: constraints.maxWidth * .25),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
+                    //boxShadow: shadow1,
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 0.3,
                     ),
                   ),
-                  Expanded(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.all(0),
-                      title: Text(
-                        "Beatiful House in Malang",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.only(right: 8),
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            backgroundImage: new NetworkImage(avatar),
+                          ),
+                          title: RichText(
+                            text: new TextSpan(
+                              text: 'by ',
+                              style: TextStyle(
+                                color: Colors.black54,
+                              ),
+                              children: <TextSpan>[
+                                new TextSpan(
+                                  text: 'Jennifer Carol',
+                                  style: new TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          subtitle: Text(
+                            "January 23, 2019",
+                            style: TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
                         ),
                       ),
-                      subtitle: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-                        overflow: TextOverflow.ellipsis,
+                      Expanded(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.all(0),
+                          title: Text(
+                            "Beatiful House in Malang",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 22),
+                    ],
                   ),
-                  SizedBox(height: 5),
-                ],
-              ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 10,
+                  child: Icon(
+                    Icons.favorite,
+                    color: Color(0xffff8993),
+                    size: 18,
+                  ),
+                ),
+              ],
             ),
           ),
           Positioned(
@@ -219,7 +264,7 @@ class NewsAppConceptHome extends StatelessWidget {
                 height: constraints.maxHeight * .65,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(img),
@@ -233,47 +278,77 @@ class NewsAppConceptHome extends StatelessWidget {
                 height: constraints.maxHeight * .55,
                 child: Padding(
                   padding: const EdgeInsets.all(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 0.5,
-                      ),
-                      boxShadow: shadow1,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.grey,
-                              backgroundImage: new NetworkImage(avatar),
-                            ),
-                            title: Text("by Lynne William"),
-                            subtitle: Text("January 23, 2019"),
-                            trailing: Icon(
-                              Icons.favorite,
-                              color: Color(0xffff8993),
-                            ),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Colors.grey,
+                            width: 0.5,
                           ),
+                          //boxShadow: shadow1,
                         ),
-                        Expanded(
-                          child: ListTile(
-                            title: Text(
-                              "Beatiful House in Malang",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Colors.grey,
+                                  backgroundImage: new NetworkImage(avatar),
+                                ),
+                                title: RichText(
+                                  text: new TextSpan(
+                                    text: 'by ',
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                    ),
+                                    children: <TextSpan>[
+                                      new TextSpan(
+                                        text: 'Jennifer Carol',
+                                        style: new TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  "January 23, 2019",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                  ),
+                                ),
                               ),
                             ),
-                            subtitle: Text("lorem ipsum color sit amet"),
-                          ),
+                            Expanded(
+                              child: ListTile(
+                                title: Text(
+                                  "Beatiful House in Malang",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                    "lorem ipsum color sit amet, consectetur"),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
                         ),
-                        SizedBox(height: 5),
-                      ],
-                    ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        top: 10,
+                        child: Icon(
+                          Icons.favorite,
+                          color: Color(0xffff8993),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

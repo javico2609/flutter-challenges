@@ -26,18 +26,21 @@ const Color _kAmbientShadowOpacity = Color(0x1F000000); // alpha = 0.12
 
 List<BoxShadow> shadow1 = [
   BoxShadow(
-      offset: Offset(0.0, 1.0),
-      blurRadius: 1.0,
-      spreadRadius: -1.0,
-      color: _kKeyUmbraOpacity),
+    offset: Offset(0.0, 0.3),
+    blurRadius: 0.3,
+    spreadRadius: -0.3,
+    color: _kKeyUmbraOpacity.withOpacity(0.5),
+  ),
   BoxShadow(
-      offset: Offset(0.0, 1.0),
-      blurRadius: 1.0,
-      spreadRadius: 0.0,
-      color: _kKeyPenumbraOpacity),
+    offset: Offset(0.0, 0.3),
+    blurRadius: 0.3,
+    spreadRadius: 0.0,
+    color: _kKeyPenumbraOpacity.withOpacity(0.5),
+  ),
   BoxShadow(
-      offset: Offset(0.0, 1.0),
-      blurRadius: 1.0,
-      spreadRadius: 0.0,
-      color: _kAmbientShadowOpacity),
+    offset: Offset(0.0, 0.3),
+    blurRadius: 0.3,
+    spreadRadius: 0.0,
+    color: _kAmbientShadowOpacity.withOpacity(0.5),
+  ),
 ];

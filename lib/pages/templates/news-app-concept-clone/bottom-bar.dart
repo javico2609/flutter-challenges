@@ -24,86 +24,82 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            bottom: 0,
-            child: new BottomAppBar(
-              //elevation: 3,
-              child: Container(
-                height: 60.0,
-                width: MediaQuery.of(context).size.width,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    _getBottomBarItem(
-                      context: context,
-                      index: 0,
-                      icon: Icons.home,
-                    ),
-                    _getBottomBarItem(
-                      context: context,
-                      index: 1,
-                      icon: Icons.account_balance_wallet,
-                    ),
-                    new Container(width: MediaQuery.of(context).size.width / 5),
-                    _getBottomBarItem(
-                      context: context,
-                      index: 2,
-                      icon: Icons.notifications_none,
-                    ),
-                    _getBottomBarItem(
-                      context: context,
-                      index: 3,
-                      icon: Icons.account_circle,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            width: MediaQuery.of(context).size.width,
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          bottom: 0,
+          child: new BottomAppBar(
+            //elevation: 3,
             child: Container(
-              alignment: Alignment.center,
-              child: FloatingActionButton(
-                elevation: 2,
-                highlightElevation: 5,
-                backgroundColor: color,
-                child: Icon(
-                  Icons.add,
-                  size: 38,
-                ),
-                onPressed: () {},
+              height: 60.0,
+              width: MediaQuery.of(context).size.width,
+              child: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  _getBottomBarItem(
+                    context: context,
+                    index: 0,
+                    icon: Icons.home,
+                  ),
+                  _getBottomBarItem(
+                    context: context,
+                    index: 1,
+                    icon: Icons.account_balance_wallet,
+                  ),
+                  new Container(width: MediaQuery.of(context).size.width / 5),
+                  _getBottomBarItem(
+                    context: context,
+                    index: 2,
+                    icon: Icons.notifications_none,
+                  ),
+                  _getBottomBarItem(
+                    context: context,
+                    index: 3,
+                    icon: Icons.account_circle,
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          bottom: 10,
+          width: MediaQuery.of(context).size.width,
+          child: Container(
+            alignment: Alignment.center,
+            child: FloatingActionButton(
+              elevation: 2,
+              highlightElevation: 5,
+              backgroundColor: color,
+              child: Icon(
+                Icons.add,
+                size: 38,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _getBottomBarItem({BuildContext context, int index, IconData icon}) {
     double itemWidth = MediaQuery.of(context).size.width / 5;
-    double iconSize = 35.0;
+    double iconSize = 30.0;
     return new Container(
       width: itemWidth,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          IconButton(
-            alignment: Alignment.topCenter,
-            icon: Icon(
+          InkWell(
+            child: Icon(
               icon,
               size: iconSize,
               color: _getItemColor(index: index),
             ),
-            onPressed: () {
+            onTap: () {
               if (index != _activeInndex) {
                 setState(() {
                   _activeInndex = index;

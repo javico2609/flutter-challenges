@@ -65,7 +65,7 @@ class _CategoriesNavigatorState extends State<CategoriesNavigator> {
                   ),
                 ],
               ),
-              SizedBox(width: width / 8),
+              SizedBox(width: width / 11),
             ],
           ),
         ),
