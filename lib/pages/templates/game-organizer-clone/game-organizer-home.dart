@@ -1,9 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/bloc/theme.bloc.dart';
 import 'package:playground_flutter/configs/themes.dart';
-import 'package:playground_flutter/pages/templates/game-organizer-clone/line-painter.dart';
+import 'package:playground_flutter/data/game-organizer-data.dart';
+import 'package:playground_flutter/data/icons.dart';
+import 'package:playground_flutter/models/game_organizer_model.dart';
+import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-detail.dart';
+import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-item.dart';
 
 Color color = new Color(0xff00b965);
+Color textColor = new Color(0xffa8b6c2);
 
 class GameOrganizerHome extends StatefulWidget {
   GameOrganizerHome({Key key}) : super(key: key);
@@ -32,6 +38,82 @@ class _GameOrganizerHomeState extends State<GameOrganizerHome> {
             size: 35,
           ),
           SizedBox(width: 10),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        fixedColor: color,
+        currentIndex: 0,
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(
+              Icons.grid_on,
+              size: 30,
+            ),
+            title: Text(
+              "Games",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(
+              history,
+              size: 30,
+              color: Color(0xff9dacbb),
+            ),
+            title: Text(
+              "History",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xff9dacbb),
+              ),
+            ),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(
+              users,
+              size: 30,
+              color: Color(0xff9dacbb),
+            ),
+            title: Text(
+              "Lists",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xff9dacbb),
+              ),
+            ),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notifications_none,
+              size: 30,
+              color: Color(0xff9dacbb),
+            ),
+            title: Text(
+              "Notificaciones",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xff9dacbb),
+              ),
+            ),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(
+              Icons.account_circle,
+              size: 30,
+              color: Color(0xff9dacbb),
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xff9dacbb),
+              ),
+            ),
+          )
         ],
       ),
       body: Container(
@@ -79,79 +161,11 @@ class _GameOrganizerHomeState extends State<GameOrganizerHome> {
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                 children: <Widget>[
                   _buildText("Today"),
+                  ..._buildItems(width, height, organizerTodayData, context),
+                  SizedBox(height: 15),
+                  _buildText("Other"),
+                  ..._buildItems(width, height, organizerOtherData, context),
                   SizedBox(height: 10),
-                  Card(
-                    elevation: 0.8,
-                    child: Container(
-                      width: width,
-                      height: height * .35,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.orangeAccent.withOpacity(0.2),
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        "Tennis",
-                                        style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        "April 1, 2019",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  width: 70,
-                                  child: Text(
-                                    "12:30",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: width,
-                            height: 20,
-                            child: CustomPaint(
-                              foregroundPainter: LinePainter(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             )
@@ -192,8 +206,44 @@ class _GameOrganizerHomeState extends State<GameOrganizerHome> {
     return Text(
       msg,
       style: TextStyle(
-        color: Colors.grey,
+        color: textColor,
+        fontSize: 15,
       ),
     );
+  }
+
+  List<Widget> _buildItems(double width, double height,
+      List<GameOrganizerModelModel> data, BuildContext context) {
+    return data.map((item) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => new GameOrganizerDetail(item: item),
+              ),
+            );
+          },
+          child: Container(
+            width: width,
+            height: height * .37,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xffeff2f3),
+                  offset: Offset(2.0, 10.0),
+                  blurRadius: 10.0,
+                ),
+              ],
+            ),
+            child: GameOrganizerItem(
+              item: item,
+            ),
+          ),
+        ),
+      );
+    }).toList();
   }
 }

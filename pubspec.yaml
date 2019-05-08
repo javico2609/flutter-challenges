@@ -56,6 +56,10 @@ flutter:
         - asset: assets/fonts/rubik/Rubik-Regular.ttf
         - asset: assets/fonts/rubik/Rubik-Medium.ttf
         - asset: assets/fonts/rubik/Rubik-Bold.ttf
+
+    - family: Iconfont
+      fonts:
+        - asset: assets/fonts/icofont/icofont.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
