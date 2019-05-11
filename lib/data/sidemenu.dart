@@ -29,4 +29,5 @@ List<MenuModel> menu = [
       'News App Concept template', Icons.open_in_new, '/NewsAppConcept'),
   new MenuModel('Furniture template', Icons.pages, '/Furniture', true),
   new MenuModel('GameOrganizer template', Icons.pages, '/GameOrganizer', true),
+  new MenuModel('Smart Home template', Icons.hot_tub, '/SmartHome'),
 ];

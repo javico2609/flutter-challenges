@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum Themes { light, dark, whapsapp, gameOrganizer }
+enum Themes { light, dark, whapsapp, gameOrganizer, smartHome }
 
 ThemeData getThemeByType(Themes type) {
   switch (type) {
@@ -12,6 +12,14 @@ ThemeData getThemeByType(Themes type) {
       return ThemeData(
         primaryColor: new Color(0xff075E54),
         accentColor: new Color(0xff25D366),
+      );
+    case Themes.smartHome:
+      return ThemeData(
+        brightness: Brightness.light,
+        backgroundColor: Color(0xfff7f8f9),
+        fontFamily: 'Rubik',
+        cardColor: Colors.white,
+        //textTheme: TextTheme(),
       );
     case Themes.gameOrganizer:
       return ThemeData(
