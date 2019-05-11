@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playground_flutter/pages/templates/smart-home-clone/center-bottom-button.dart';
 
 Color color = Color(0xffff024a);
 
@@ -43,7 +42,9 @@ class _BottomBarState extends State<BottomBar> {
           alignment: Alignment.center,
           child: Ink(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                print("hola!!");
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
