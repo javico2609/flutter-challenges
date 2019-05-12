@@ -19,6 +19,7 @@ ThemeData getThemeByType(Themes type) {
         backgroundColor: Color(0xfff7f8f9),
         fontFamily: 'Rubik',
         cardColor: Colors.white,
+        accentColor: Color(0xffff1e39),
         //textTheme: TextTheme(),
       );
     case Themes.gameOrganizer:

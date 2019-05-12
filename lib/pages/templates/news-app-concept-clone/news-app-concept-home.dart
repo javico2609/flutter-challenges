@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playground_flutter/configs/themes.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/bottom-bar.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/categories-navigator.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-details.dart';
