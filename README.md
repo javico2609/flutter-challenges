@@ -22,6 +22,7 @@
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/javico2609/flutter-challenges/blob/master/licence.txt)
+[![Flutter Awesome](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter)
 
 # Donate
 
@@ -35,3 +36,8 @@
 
 For help getting started with Flutter, view our online  
 [documentation](https://flutter.io/).
+
+## :cloud: Credits
+
+Designs: [dribbble](dribbble.com), [uplabs](uplabs.com), [behance](behance.net)
+Icons: Icons8, FlatIcon, Icofont
