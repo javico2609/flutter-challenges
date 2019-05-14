@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:playground_flutter/models/game_organizer_model.dart';
 import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-item.dart';
 
+import 'game-organizer-helper.dart';
+import 'line-painter.dart';
+
 Color color = new Color(0xff00b965);
 Color textColor = new Color(0xffa8b6c2);
 
@@ -22,12 +25,14 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
   void initState() {
     super.initState();
     _tabController = new TabController(vsync: this, initialIndex: 0, length: 2);
+    _tabController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -53,13 +58,16 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
           SizedBox(width: 10),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: color,
-        child: Icon(
-          Icons.person_add,
-          color: Colors.white,
+      floatingActionButton: Visibility(
+        visible: _tabController.index == 0,
+        child: FloatingActionButton(
+          backgroundColor: color,
+          child: Icon(
+            Icons.person_add,
+            color: Colors.white,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: Column(
@@ -80,6 +88,8 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
                   indicatorColor: color,
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorWeight: 3,
+                  labelColor: color,
+                  unselectedLabelColor: textColor,
                   tabs: <Widget>[
                     new Container(
                       height: 40,
@@ -87,13 +97,14 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
                         children: <Widget>[
                           Icon(
                             Icons.group_add,
-                            color: textColor,
                           ),
                           SizedBox(width: 10),
                           Text(
                             'Invitations',
                             style: TextStyle(
-                              color: textColor,
+                              color: _tabController.index == 0
+                                  ? Colors.black
+                                  : textColor,
                             ),
                           )
                         ],
@@ -105,13 +116,14 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
                         children: <Widget>[
                           Icon(
                             Icons.info,
-                            color: textColor,
                           ),
                           SizedBox(width: 10),
                           Text(
                             'Informations',
                             style: TextStyle(
-                              color: textColor,
+                              color: _tabController.index == 1
+                                  ? Colors.black
+                                  : textColor,
                             ),
                           )
                         ],
@@ -132,7 +144,91 @@ class _GameOrganizerDetailState extends State<GameOrganizerDetail>
                           _buildPlayerStatus(width, true),
                         ],
                       ),
-                      Container(),
+                      LayoutBuilder(
+                        builder: (_, constraints) {
+                          return Container(
+                            width: constraints.maxWidth,
+                            height: constraints.maxHeight,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  buildDetailInfo(
+                                    title1: "Country",
+                                    value1: widget.item.country,
+                                    title2: "City",
+                                    value2: widget.item.city,
+                                  ),
+                                  buildDetailInfo(
+                                    title1: "Game type",
+                                    value1: "Repetitive game",
+                                    title2: "Address",
+                                    value2: "3086 36th St, Queens",
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: 40,
+                                    child: CustomPaint(
+                                      foregroundPainter: LinePainter(),
+                                    ),
+                                  ),
+                                  buildDetailInfo(
+                                    title1: "Players with yes:",
+                                    value1:
+                                        widget.item.playersWithYes.toString(),
+                                    title2: "Players with Maybe:",
+                                    value2:
+                                        widget.item.playersWithMaybe.toString(),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      buildDetailInfoItem(
+                                        "Players with no:",
+                                        widget.item.playersWithNo.toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: 40,
+                                    child: CustomPaint(
+                                      foregroundPainter: LinePainter(),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            "8",
+                                            style: TextStyle(
+                                              fontSize: 70,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Player needed",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: textColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

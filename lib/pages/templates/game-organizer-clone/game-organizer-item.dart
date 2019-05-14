@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:playground_flutter/models/game_organizer_model.dart';
 import 'package:playground_flutter/pages/templates/game-organizer-clone/line-painter.dart';
 
+import 'game-organizer-helper.dart';
+
 Color color = new Color(0xff00b965);
 Color textColor = new Color(0xffa8b6c2);
 
@@ -15,7 +17,6 @@ class GameOrganizerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Column(
       children: <Widget>[
@@ -95,19 +96,19 @@ class GameOrganizerItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildDetailInfo(
+                  buildDetailInfo(
                     title1: "Country",
                     value1: item.country,
                     title2: "City",
                     value2: item.city,
                   ),
-                  _buildDetailInfo(
+                  buildDetailInfo(
                     title1: "Players with yes:",
                     value1: item.playersWithYes.toString(),
                     title2: "Players with Maybe:",
                     value2: item.playersWithMaybe.toString(),
                   ),
-                  _buildDetailInfoItem(
+                  buildDetailInfoItem(
                     "Players with no:",
                     item.playersWithNo.toString(),
                   ),
@@ -118,50 +119,6 @@ class GameOrganizerItem extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildDetailInfo(
-      {String title1, String value1, String title2, String value2}) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 10,
-        bottom: 10,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _buildDetailInfoItem(title1, value1),
-          _buildDetailInfoItem(title2, value2),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDetailInfoItem(String title1, String value1) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title1,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 16,
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            value1,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
