@@ -40,4 +40,5 @@ For help getting started with Flutter, view our online
 ## :cloud: Credits
 
 Designs: [dribbble](https://dribbble.com), [uplabs](https://uplabs.com), [behance](https://behance.net)
+
 Icons: Icons8, FlatIcon, Icofont
