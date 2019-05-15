@@ -1,33 +1,97 @@
 import 'package:flutter/material.dart';
-
-class MenuModel {
-  IconData icon;
-  String title;
-  String route;
-  bool isRoot;
-
-  MenuModel([this.title, this.icon, this.route, this.isRoot = false]);
-}
+import 'package:playground_flutter/models/menu_item.model.dart';
 
 List<MenuModel> menu = [
   new MenuModel(
-      'BottomTBar with FloatButton', Icons.menu, '/BottomBarWithFloatButton'),
-  new MenuModel('3D BottomNavigationBar', Icons.bubble_chart,
-      '/ThreeDimenssionBottomNavigationBar'),
-  new MenuModel('Trending template', Icons.important_devices, '/Trending'),
-  new MenuModel('ProfileOne template', Icons.group, '/ProfileOne'),
-  new MenuModel('WhasApp template', Icons.whatshot, '/WhatsApp'),
-  new MenuModel('Greenery template', Icons.threesixty, '/Greenery'),
-  new MenuModel('Progress Button', Icons.blur_circular, '/ProgressButton'),
-  new MenuModel('Daycare template', Icons.credit_card, '/Daycare'),
-  new MenuModel('Real Estate template', Icons.home, '/RealEstate'),
+    title: 'BottomTBar with FloatButton',
+    icon: Icons.menu,
+    route: '/BottomBarWithFloatButton',
+    type: MenuItemType.COMPONENT,
+  ),
   new MenuModel(
-      'Smart Plant template', Icons.assignment_turned_in, '/SmartPlant'),
-  new MenuModel('Hospital Dashboard template', Icons.markunread_mailbox,
-      '/HospitalDashboard'),
+    title: '3D BottomNavigationBar',
+    icon: Icons.bubble_chart,
+    route: '/ThreeDimtitle:enssionBottomNavigationBar',
+    type: MenuItemType.COMPONENT,
+  ),
   new MenuModel(
-      'News App Concept template', Icons.open_in_new, '/NewsAppConcept'),
-  new MenuModel('Furniture template', Icons.pages, '/Furniture', true),
-  new MenuModel('GameOrganizer template', Icons.pages, '/GameOrganizer', true),
-  new MenuModel('Smart Home template', Icons.hot_tub, '/SmartHome'),
+    title: 'Trending template',
+    icon: Icons.important_devices,
+    route: '/Trending',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'ProfileOne template',
+    icon: Icons.group,
+    route: '/ProfileOne',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'WhasApp template',
+    icon: Icons.whatshot,
+    route: '/WhatsApp',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Greenery template',
+    icon: Icons.threesixty,
+    route: '/Greenery',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Progress Button',
+    icon: Icons.blur_circular,
+    route: '/ProgressButton',
+    type: MenuItemType.COMPONENT,
+  ),
+  new MenuModel(
+    title: 'Daycare template',
+    icon: Icons.credit_card,
+    route: '/Daycare',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Real Estate template',
+    icon: Icons.home,
+    route: '/RealEstate',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Smart Plant template',
+    icon: Icons.assignment_turned_in,
+    route: '/SmartPlant',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Hospital Dashboard template',
+    icon: Icons.markunread_mailbox,
+    route: '/HospitalDashboard',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'News App Concept template',
+    icon: Icons.open_in_new,
+    route: '/NewsAppConcept',
+    type: MenuItemType.TEMPLATE,
+  ),
+  new MenuModel(
+    title: 'Furniture template',
+    icon: Icons.pages,
+    route: '/Furniture',
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
+  new MenuModel(
+    title: 'GameOrganizer template',
+    icon: Icons.pages,
+    route: '/GameOrganizer',
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
+  new MenuModel(
+    title: 'Smart Home template',
+    icon: Icons.hot_tub,
+    type: MenuItemType.TEMPLATE,
+    route: '/SmartHome',
+  ),
 ];

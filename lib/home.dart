@@ -1,25 +1,58 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/data/sidemenu.dart';
+import 'package:playground_flutter/models/menu_item.model.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Map<String, List<MenuModel>> items =
+        groupBy<MenuModel, String>(menu, (MenuModel m) => m.type.toString());
+
     return Scaffold(
       drawer: new Drawer(
-        child: new ListView.builder(
-          itemCount: menu.length,
-          itemBuilder: (BuildContext context, int index) => new ListTile(
-                title: new Text(menu[index].title),
-                trailing: new Icon(menu[index].icon),
-                onTap: () {
-                  Navigator.pop(context);
-                  if (menu[index].isRoot) {
-                    Navigator.pushReplacementNamed(context, menu[index].route);
-                  } else {
-                    Navigator.pushNamed(context, menu[index].route);
-                  }
-                },
+        child: new ListView(
+          padding: const EdgeInsets.only(top: 0),
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountEmail: Text('@javico_glez'),
+              accountName: Text("Javier González Rodríguez"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: ExactAssetImage("assets/images/myAvatar.png"),
+                backgroundColor: Colors.transparent,
               ),
+              margin: const EdgeInsets.only(bottom: 0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    // Colors are easy thanks to Flutter's Colors class.
+                    Colors.blue[800],
+                    Colors.blue[700],
+                    Colors.blue[600],
+                    Colors.blue[400],
+                    Colors.blue[300],
+                  ],
+                ),
+              ),
+            ),
+            ..._buildSection(
+              context: context,
+              items: items[MenuItemType.COMPONENT.toString()] ?? [],
+              type: "Components",
+            ),
+            ..._buildSection(
+              context: context,
+              items: items[MenuItemType.TEMPLATE.toString()] ?? [],
+              type: "Templates",
+            ),
+            ..._buildSection(
+              context: context,
+              items: items[MenuItemType.CODE.toString()] ?? [],
+              type: "CodeExample",
+            ),
+          ],
         ),
       ),
       body: Container(
@@ -55,19 +88,62 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            // Colors are easy thanks to Flutter's Colors class.
-            Colors.blue[800],
-            Colors.blue[700],
-            Colors.blue[600],
-            Colors.blue[400],
-            Colors.blue[300],
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              // Colors are easy thanks to Flutter's Colors class.
+              Colors.blue[800],
+              Colors.blue[700],
+              Colors.blue[600],
+              Colors.blue[400],
+              Colors.blue[300],
+            ],
+          ),
+        ),
       ),
+    );
+  }
+
+  List<Widget> _buildSection(
+      {BuildContext context, String type, List<MenuModel> items}) {
+    return [
+      Padding(
+        padding: const EdgeInsets.only(
+          top: 10,
+          left: 10,
+          right: 10,
+        ),
+        child: Container(
+          height: 40,
+          color: Colors.blueGrey,
+          alignment: Alignment.center,
+          child: Text(
+            type,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
+          ),
+        ),
+      ),
+      ...items.map((item) => _buildItem(item, context))
+    ];
+  }
+
+  Widget _buildItem(MenuModel item, context) {
+    return new ListTile(
+      title: new Text(item.title),
+      leading: new Icon(item.icon),
+      onTap: () {
+        Navigator.pop(context);
+        if (item.isRoot) {
+          Navigator.pushReplacementNamed(context, item.route);
+        } else {
+          Navigator.pushNamed(context, item.route);
+        }
+      },
     );
   }
 }
