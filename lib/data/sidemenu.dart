@@ -94,4 +94,11 @@ List<MenuModel> menu = [
     type: MenuItemType.TEMPLATE,
     route: '/SmartHome',
   ),
+  new MenuModel(
+    title: 'Auth examples',
+    icon: Icons.verified_user,
+    type: MenuItemType.CODE,
+    route: '/GoogleAuth',
+    isRoot: true,
+  ),
 ];
