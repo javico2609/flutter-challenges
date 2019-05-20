@@ -10,9 +10,7 @@
 
 [Javier González](https://github.com/javico2609)
 
-<aside class="notice">
- Native integration like firebase it's only supported by android platform, you need add this config for IOS or disable this feature if you want run the app.
-</aside>
+###### Native integration like firebase it's only supported by android platform, you need add this config for IOS or disable this feature if you want run the app. ):
 
 ## Social links
 
