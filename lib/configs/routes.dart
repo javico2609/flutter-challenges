@@ -3,6 +3,7 @@ import 'package:playground_flutter/pages/code_examples/auth_google/auth_google.d
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_with_float_button.dart';
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
+import 'package:playground_flutter/pages/code_examples/webview/webview.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
 import 'package:playground_flutter/pages/templates/furniture-clone/furniture-home.dart';
 import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-home.dart';
@@ -35,4 +36,5 @@ var routes = {
   '/GameOrganizer': (context) => new GameOrganizerHome(),
   '/SmartHome': (context) => new SmartHome(),
   '/GoogleAuth': (context) => new GoogleAuth(),
+  '/WebviewFlutter': (context) => new WebviewFlutter(),
 };

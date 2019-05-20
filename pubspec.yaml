@@ -27,6 +27,7 @@ dependencies:
   firebase_auth:
   rxdart:
   google_sign_in:
+  webview_flutter:
 
 dev_dependencies:
   flutter_test:

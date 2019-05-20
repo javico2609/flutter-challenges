@@ -101,4 +101,10 @@ List<MenuModel> menu = [
     route: '/GoogleAuth',
     isRoot: true,
   ),
+  new MenuModel(
+    title: 'Webview example',
+    icon: Icons.pageview,
+    type: MenuItemType.CODE,
+    route: '/WebviewFlutter',
+  ),
 ];
