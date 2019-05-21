@@ -28,6 +28,9 @@ dependencies:
   rxdart:
   google_sign_in:
   webview_flutter:
+  flutter_redux:
+  redux_logging:
+  get_it:
 
 dev_dependencies:
   flutter_test:

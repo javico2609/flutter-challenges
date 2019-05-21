@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:playground_flutter/components/ProgressButton/progress-button.dart' as ProgressButtonComponent;
+import 'package:playground_flutter/components/ProgressButton/progress-button.dart'
+    as ProgressButtonComponent;
 import 'package:playground_flutter/models/rates.model.dart';
 import 'package:playground_flutter/services/web.client.dart';
 
@@ -16,12 +17,13 @@ class _ProgressButtonState extends State<ProgressButton> {
   Future<void> _createMovement(done) async {
     await Future.delayed(Duration(seconds: 1));
 
-   dynamic ratesResponse = await http.get('currency/latest'); 
-   RatesModel rates = RatesModel.fromSnapshot(ratesResponse["rates"]);
-   
-   print(ratesResponse);
+    // find more example in redux service. :)
+    //dynamic ratesResponse = await http.get('currency/latest');
+    //RatesModel rates = RatesModel.fromSnapshot(ratesResponse["rates"]);
 
-    return done( Random().nextInt(50) % 2 == 0 ? true : false );
+    //print(ratesResponse);
+
+    return done(Random().nextInt(50) % 2 == 0 ? true : false);
   }
 
   @override
@@ -74,7 +76,7 @@ class _ProgressButtonState extends State<ProgressButton> {
                     hintText: "Description del movimiento",
                   ),
                 ),
-                 ProgressButtonComponent.ProgressButton(
+                ProgressButtonComponent.ProgressButton(
                   title: "Crear",
                   operation: _createMovement,
                   canExecuteOperation: () => _formKey.currentState.validate(),

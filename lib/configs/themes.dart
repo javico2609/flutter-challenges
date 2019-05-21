@@ -37,6 +37,7 @@ ThemeData getThemeByType(Themes type) {
     default:
       return ThemeData(
         brightness: Brightness.light,
+        fontFamily: 'Rubik',
       );
   }
 }

@@ -107,4 +107,10 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     route: '/WebviewFlutter',
   ),
+  new MenuModel(
+    title: 'Redux example',
+    icon: Icons.settings_applications,
+    type: MenuItemType.CODE,
+    route: '/ReduxFlutter',
+  ),
 ];
