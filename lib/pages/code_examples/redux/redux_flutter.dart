@@ -17,10 +17,10 @@ class ReduxFlutter extends StatelessWidget {
         title: Text('Redux example'),
       ),
       body: StoreConnector<AppState, ReduxViewModel>(
-        converter: (store) => ReduxViewModel.fromStore(store),
         distinct: true,
         rebuildOnChange: true,
-        onInit: (store) => store.dispatch(new LoadQuestionActionAction()),
+        converter: (store) => ReduxViewModel.fromStore(store),
+        onInit: (store) => store.dispatch(new LoadQuestionAction()),
         builder: (_, vm) {
           return ListView.builder(
             itemCount: vm.state.questions.length,

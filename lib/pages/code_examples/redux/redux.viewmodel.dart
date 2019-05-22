@@ -15,9 +15,9 @@ class ReduxViewModel {
     return new ReduxViewModel(
       state: store.state.stackOverflowState,
       onDelete: (question) =>
-          store.dispatch(new DeleteQuestionActionAction(question: question)),
+          store.dispatch(new DeleteQuestionAction(question: question)),
       onView: (question) =>
-          store.dispatch(new ViewQuestionActionAction(question: question)),
+          store.dispatch(new ViewQuestionAction(question: question)),
     );
   }
 

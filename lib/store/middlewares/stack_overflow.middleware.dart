@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/services/stack_overflow.service.dart';
 import 'package:playground_flutter/store/actions/stack_overflow.action.dart';
@@ -11,8 +10,8 @@ List<Middleware<AppState>> overflowMiddlewares() {
   final loginRequest = _createLoadQuestionRequest(service);
 
   return ([
-    TypedMiddleware<AppState, LoadQuestionActionAction>(loginRequest),
-    TypedMiddleware<AppState, ViewQuestionActionAction>(_viewQuestion),
+    TypedMiddleware<AppState, LoadQuestionAction>(loginRequest),
+    TypedMiddleware<AppState, ViewQuestionAction>(_viewQuestion),
   ]);
 }
 
@@ -20,9 +19,9 @@ Middleware<AppState> _createLoadQuestionRequest(StackOverflowService service) {
   return (Store<AppState> store, action, NextDispatcher next) async {
     try {
       var questions = await service.list();
-      store.dispatch(new LoadQuestionActionSuccessAction(questions: questions));
+      store.dispatch(new LoadQuestionSuccessAction(questions: questions));
     } catch (error) {
-      store.dispatch(new LoadQuestionActionFailureAction(error: error));
+      store.dispatch(new LoadQuestionFailureAction(error: error));
     }
 
     // Make sure to forward actions to the next middleware in the chain!

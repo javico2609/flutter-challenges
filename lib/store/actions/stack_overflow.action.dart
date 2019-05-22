@@ -1,28 +1,28 @@
 import 'package:flutter/foundation.dart';
 import 'package:playground_flutter/models/stackoverflow.model.dart';
 
-class LoadQuestionActionAction {}
+class LoadQuestionAction {}
 
-class LoadQuestionActionSuccessAction {
+class LoadQuestionSuccessAction {
   final List<StackOverflowModel> questions;
 
-  LoadQuestionActionSuccessAction({@required this.questions});
+  LoadQuestionSuccessAction({@required this.questions});
 }
 
-class LoadQuestionActionFailureAction {
+class LoadQuestionFailureAction {
   final dynamic error;
 
-  LoadQuestionActionFailureAction({@required this.error});
+  LoadQuestionFailureAction({@required this.error});
 }
 
-class DeleteQuestionActionAction {
+class DeleteQuestionAction {
   final StackOverflowModel question;
 
-  DeleteQuestionActionAction({@required this.question});
+  DeleteQuestionAction({@required this.question});
 }
 
-class ViewQuestionActionAction {
+class ViewQuestionAction {
   final StackOverflowModel question;
 
-  ViewQuestionActionAction({@required this.question});
+  ViewQuestionAction({@required this.question});
 }

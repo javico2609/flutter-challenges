@@ -3,17 +3,17 @@ import 'package:playground_flutter/store/state/stack_overflow.state.dart';
 import 'package:redux/redux.dart';
 
 StackOverflowState loadQuestions(
-    StackOverflowState state, LoadQuestionActionSuccessAction action) {
+    StackOverflowState state, LoadQuestionSuccessAction action) {
   return state.copyWith(q: action.questions);
 }
 
 StackOverflowState viewQuestion(
-    StackOverflowState state, ViewQuestionActionAction action) {
+    StackOverflowState state, ViewQuestionAction action) {
   return state.copyWith(s: action.question);
 }
 
 StackOverflowState deleteQuestion(
-    StackOverflowState state, DeleteQuestionActionAction action) {
+    StackOverflowState state, DeleteQuestionAction action) {
   return state.copyWith(
     q: state.questions
         .where((q) => q.questionId != action.question.questionId)
@@ -23,9 +23,8 @@ StackOverflowState deleteQuestion(
 
 final Reducer<StackOverflowState> stackOverflowReducer =
     combineReducers<StackOverflowState>([
-  new TypedReducer<StackOverflowState, LoadQuestionActionSuccessAction>(
+  new TypedReducer<StackOverflowState, LoadQuestionSuccessAction>(
       loadQuestions),
-  new TypedReducer<StackOverflowState, DeleteQuestionActionAction>(
-      deleteQuestion),
-  new TypedReducer<StackOverflowState, ViewQuestionActionAction>(viewQuestion),
+  new TypedReducer<StackOverflowState, DeleteQuestionAction>(deleteQuestion),
+  new TypedReducer<StackOverflowState, ViewQuestionAction>(viewQuestion),
 ]);
