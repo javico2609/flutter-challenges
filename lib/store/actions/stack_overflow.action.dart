@@ -20,3 +20,9 @@ class DeleteQuestionActionAction {
 
   DeleteQuestionActionAction({@required this.question});
 }
+
+class ViewQuestionActionAction {
+  final StackOverflowModel question;
+
+  ViewQuestionActionAction({@required this.question});
+}

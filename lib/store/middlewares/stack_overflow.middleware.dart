@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/services/stack_overflow.service.dart';
 import 'package:playground_flutter/store/actions/stack_overflow.action.dart';
 import 'package:playground_flutter/store/state/app.state.dart';
@@ -10,6 +12,7 @@ List<Middleware<AppState>> overflowMiddlewares() {
 
   return ([
     TypedMiddleware<AppState, LoadQuestionActionAction>(loginRequest),
+    TypedMiddleware<AppState, ViewQuestionActionAction>(_viewQuestion),
   ]);
 }
 
@@ -25,4 +28,10 @@ Middleware<AppState> _createLoadQuestionRequest(StackOverflowService service) {
     // Make sure to forward actions to the next middleware in the chain!
     next(action);
   };
+}
+
+_viewQuestion(Store<AppState> store, action, NextDispatcher next) {
+  NavigationConstrants.navKey.currentState.pushNamed("/redux-view-question");
+  // Make sure to forward actions to the next middleware in the chain!
+  next(action);
 }

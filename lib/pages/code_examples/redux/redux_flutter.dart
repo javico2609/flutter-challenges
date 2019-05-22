@@ -29,6 +29,7 @@ class ReduxFlutter extends StatelessWidget {
               return QuestionItem(
                 model: model,
                 onDelete: vm.onDelete,
+                onView: vm.onView,
               );
             },
           );

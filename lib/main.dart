@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:playground_flutter/bloc/theme.bloc.dart';
 import 'package:playground_flutter/configs/routes.dart';
 import 'package:playground_flutter/configs/themes.dart';
+import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/environment.dart';
 import 'package:playground_flutter/store/state/app.state.dart';
 import 'package:redux/redux.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
               initialRoute: '/',
               debugShowCheckedModeBanner: false,
               routes: routes,
+              navigatorKey: NavigationConstrants.navKey,
             );
           }),
     );

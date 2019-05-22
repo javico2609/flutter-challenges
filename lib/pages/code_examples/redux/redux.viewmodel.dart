@@ -7,15 +7,17 @@ import 'package:redux/redux.dart';
 class ReduxViewModel {
   final StackOverflowState state;
   final Function(StackOverflowModel) onDelete;
+  final Function(StackOverflowModel) onView;
 
-  ReduxViewModel({this.state, this.onDelete});
+  ReduxViewModel({this.state, this.onDelete, this.onView});
 
   static ReduxViewModel fromStore(Store<AppState> store) {
     return new ReduxViewModel(
       state: store.state.stackOverflowState,
-      onDelete: (question) => store.dispatch(
-            new DeleteQuestionActionAction(question: question),
-          ),
+      onDelete: (question) =>
+          store.dispatch(new DeleteQuestionActionAction(question: question)),
+      onView: (question) =>
+          store.dispatch(new ViewQuestionActionAction(question: question)),
     );
   }
 

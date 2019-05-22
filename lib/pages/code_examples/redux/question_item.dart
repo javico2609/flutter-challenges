@@ -5,19 +5,15 @@ import 'package:playground_flutter/pages/code_examples/redux/preview_question.da
 class QuestionItem extends StatelessWidget {
   final StackOverflowModel model;
   final Function(StackOverflowModel) onDelete;
+  final Function(StackOverflowModel) onView;
 
-  const QuestionItem({Key key, this.model, this.onDelete}) : super(key: key);
+  const QuestionItem({Key key, this.model, this.onDelete, this.onView})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          new MaterialPageRoute(
-            builder: (_) => new PreviewQuestion(model: model),
-          ),
-        );
-      },
+      onTap: () => onView(model),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Container(

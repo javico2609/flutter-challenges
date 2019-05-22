@@ -3,6 +3,7 @@ import 'package:playground_flutter/pages/code_examples/auth_google/auth_google.d
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_with_float_button.dart';
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
+import 'package:playground_flutter/pages/code_examples/redux/preview_question.dart';
 import 'package:playground_flutter/pages/code_examples/redux/redux_flutter.dart';
 import 'package:playground_flutter/pages/code_examples/webview/webview.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
@@ -39,4 +40,5 @@ var routes = {
   '/GoogleAuth': (context) => new GoogleAuth(),
   '/WebviewFlutter': (context) => new WebviewFlutter(),
   '/ReduxFlutter': (context) => new ReduxFlutter(),
+  "/redux-view-question": (context) => PreviewQuestion(),
 };
