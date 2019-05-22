@@ -5,7 +5,7 @@ class StackOverflowState {
 
   StackOverflowState({this.questions});
 
-  StackOverflowState.initialState() : questions = [];
+  StackOverflowState.initialState() : questions = List.unmodifiable([]);
 
   StackOverflowState copyWith({questions}) =>
       new StackOverflowState(questions: questions);

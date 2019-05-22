@@ -1,4 +1,5 @@
 import 'package:playground_flutter/store/state/app.state.dart';
+import 'package:playground_flutter/store/state/stack_overflow.state.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +16,7 @@ Future<Store<AppState>> createStore() async {
   return Store(
     rootReducer,
     initialState: AppState.initialState(
-      stackOverflowState: null,
+      stackOverflowState: StackOverflowState.initialState(),
     ),
     middleware: midlewares,
   );
