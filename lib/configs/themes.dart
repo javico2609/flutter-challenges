@@ -12,6 +12,7 @@ ThemeData getThemeByType(Themes type) {
       return ThemeData(
         primaryColor: new Color(0xff075E54),
         accentColor: new Color(0xff25D366),
+        fontFamily: 'Rubik',
       );
     case Themes.smartHome:
       return ThemeData(

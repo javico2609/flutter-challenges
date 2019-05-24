@@ -46,7 +46,7 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -137,14 +137,14 @@ class _GreeneryHomeState extends State<GreeneryHome> {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 10),
               Text(
                 '10" Nursery Pot',
                 style: TextStyle(
                   color: Colors.black54,
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[

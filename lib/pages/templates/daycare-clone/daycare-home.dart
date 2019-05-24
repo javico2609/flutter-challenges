@@ -265,7 +265,7 @@ class DaycareHome extends StatelessWidget {
   Widget buildNotificationPanel(double width, double height) {
     return Positioned(
       width: width,
-      height: height * .70 - 80,
+      height: height * .70 - 40,
       top: height * 0.30 + 34,
       child: Padding(
         padding: const EdgeInsets.only(right: 16, left: 16, top: 10),
@@ -301,109 +301,112 @@ class DaycareHome extends StatelessWidget {
                 elevation: 1,
                 color: Colors.white,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     buildBodyCardTitle(title: "Invoice"),
                     Divider(
-                      height: 3,
+                      height: 2,
                       color: Colors.black87,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.only(left: 10),
-                        leading: Card(
-                          elevation: 2,
-                          child: Container(
-                            height: 60,
-                            width: 60,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "MAY",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Text(
-                                  "21",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Text(
-                                  "2017",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        title: Text(
-                          "Invoce 1013",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text("This month fate fee"),
-                            Text(
-                              "PENDING",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        trailing: Container(
+                    ListTile(
+                      contentPadding: const EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                        bottom: 10,
+                      ),
+                      leading: Card(
+                        elevation: 2,
+                        child: Container(
                           height: 70,
-                          width: 80,
-                          padding: const EdgeInsets.only(right: 5),
+                          width: 60,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "\$1200",
+                                "MAY",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Text(
+                                "21",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
                               ),
-                              SizedBox(height: 2),
-                              Container(
-                                alignment: Alignment.center,
-                                height: 30,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color(0xff1abcaa),
-                                ),
-                                child: Text(
-                                  "PLAY NOW",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              )
                             ],
                           ),
+                        ),
+                      ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Invoce 1013",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "This month fate fee",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            "PENDING",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      trailing: Container(
+                        height: 70,
+                        width: 80,
+                        padding: const EdgeInsets.only(right: 5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "\$1200",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 30,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0xff1abcaa),
+                              ),
+                              child: Text(
+                                "PLAY NOW",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     )
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 50),
             ],
           ),
         ),

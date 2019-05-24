@@ -11,7 +11,7 @@ List<MenuModel> menu = [
   new MenuModel(
     title: '3D BottomNavigationBar',
     icon: Icons.bubble_chart,
-    route: '/ThreeDimtitle:enssionBottomNavigationBar',
+    route: '/ThreeDimenssionBottomNavigationBar',
     type: MenuItemType.COMPONENT,
   ),
   new MenuModel(
