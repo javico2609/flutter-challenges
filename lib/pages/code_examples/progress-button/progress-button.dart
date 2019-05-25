@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/components/ProgressButton/progress-button.dart'
     as ProgressButtonComponent;
+import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/models/rates.model.dart';
 import 'package:playground_flutter/services/web.client.dart';
 
@@ -23,7 +24,15 @@ class _ProgressButtonState extends State<ProgressButton> {
 
     //print(ratesResponse);
 
-    return done(Random().nextInt(50) % 2 == 0 ? true : false);
+    bool successFlag = Random().nextInt(50) % 2 == 0 ? true : false;
+
+    if (successFlag) {
+      Navigator.of(context)
+          .pushNamed(NavigationConstrants.NOTIFICATION_SUCCESS);
+    } else {
+      Navigator.of(context).pushNamed(NavigationConstrants.NOTIFICATION_ERROR);
+    }
+    return done(successFlag);
   }
 
   @override

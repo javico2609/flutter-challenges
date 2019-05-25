@@ -31,6 +31,7 @@ dependencies:
   flutter_redux:
   redux_logging:
   get_it:
+  flushbar:
 
 dev_dependencies:
   flutter_test:

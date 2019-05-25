@@ -13,7 +13,7 @@ StackOverflowState viewQuestion(
 }
 
 StackOverflowState deleteQuestion(
-    StackOverflowState state, DeleteQuestionAction action) {
+    StackOverflowState state, DeleteSuccessQuestionAction action) {
   return state.copyWith(
     q: state.questions
         .where((q) => q.questionId != action.question.questionId)
@@ -25,6 +25,7 @@ final Reducer<StackOverflowState> stackOverflowReducer =
     combineReducers<StackOverflowState>([
   new TypedReducer<StackOverflowState, LoadQuestionSuccessAction>(
       loadQuestions),
-  new TypedReducer<StackOverflowState, DeleteQuestionAction>(deleteQuestion),
+  new TypedReducer<StackOverflowState, DeleteSuccessQuestionAction>(
+      deleteQuestion),
   new TypedReducer<StackOverflowState, ViewQuestionAction>(viewQuestion),
 ]);

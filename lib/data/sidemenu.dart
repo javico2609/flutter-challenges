@@ -113,4 +113,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     route: '/ReduxFlutter',
   ),
+  new MenuModel(
+    title: 'Blockchain Wallet template',
+    icon: Icons.monetization_on,
+    route: '/CryptoBlockchainWallet',
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
 ];

@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
               theme: getThemeByType(snapshot.data),
               initialRoute: '/',
               debugShowCheckedModeBanner: false,
-              routes: routes,
+              onGenerateRoute: generateRoutes,
+              //routes: routes,
               navigatorKey: NavigationConstrants.navKey,
             );
           }),

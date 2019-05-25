@@ -12,6 +12,7 @@ List<Middleware<AppState>> overflowMiddlewares() {
   return ([
     TypedMiddleware<AppState, LoadQuestionAction>(loginRequest),
     TypedMiddleware<AppState, ViewQuestionAction>(_viewQuestion),
+    TypedMiddleware<AppState, DeleteQuestionAction>(_deleteLocalQuestion),
   ]);
 }
 
@@ -30,7 +31,18 @@ Middleware<AppState> _createLoadQuestionRequest(StackOverflowService service) {
 }
 
 _viewQuestion(Store<AppState> store, action, NextDispatcher next) {
-  NavigationConstrants.navKey.currentState.pushNamed("/redux-view-question");
+  NavigationConstrants.navKey.currentState
+      .pushNamed(NavigationConstrants.ReduxViewQuestion);
+  // Make sure to forward actions to the next middleware in the chain!
+  next(action);
+}
+
+_deleteLocalQuestion(Store<AppState> store, action, NextDispatcher next) {
+  // show success msg for delete local question from my store
+  store.dispatch(new DeleteSuccessQuestionAction(question: action.question));
+
+  NavigationConstrants.navKey.currentState
+      .pushNamed(NavigationConstrants.NOTIFICATION_SUCCESS);
   // Make sure to forward actions to the next middleware in the chain!
   next(action);
 }

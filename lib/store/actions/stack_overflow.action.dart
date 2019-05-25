@@ -21,6 +21,12 @@ class DeleteQuestionAction {
   DeleteQuestionAction({@required this.question});
 }
 
+class DeleteSuccessQuestionAction {
+  final StackOverflowModel question;
+
+  DeleteSuccessQuestionAction({@required this.question});
+}
+
 class ViewQuestionAction {
   final StackOverflowModel question;
 

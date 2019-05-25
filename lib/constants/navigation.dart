@@ -2,4 +2,32 @@ import 'package:flutter/material.dart';
 
 class NavigationConstrants {
   static final navKey = new GlobalKey<NavigatorState>();
+
+  // Notification routes
+  static const String NOTIFICATION_SUCCESS = "notification-success-route";
+  static const String NOTIFICATION_ERROR = "notification-error-route";
+  static const String NOTIFICATION_INFO = "notification-info-route";
+
+  // Pages routes
+  static const String BottomBarWithFloatButton = "/BottomBarWithFloatButton";
+  static const String ThreeDimenssionBottomNavigationBar =
+      "/ThreeDimenssionBottomNavigationBar";
+  static const String Trending = "/Trending";
+  static const String ProfileOne = "/ProfileOne";
+  static const String WhatsApp = "/WhatsApp";
+  static const String Greenery = "/Greenery";
+  static const String ProgressButton = "/ProgressButton";
+  static const String Daycare = "/Daycare";
+  static const String RealEstate = "/RealEstate";
+  static const String SmartPlant = "/SmartPlant";
+  static const String HospitalDashboard = "/HospitalDashboard";
+  static const String NewsAppConcept = "/NewsAppConcept";
+  static const String Furniture = "/Furniture";
+  static const String GameOrganizer = "/GameOrganizer";
+  static const String SmartHome = "/SmartHome";
+  static const String GoogleAuth = "/GoogleAuth";
+  static const String WebviewFlutter = "/WebviewFlutter";
+  static const String ReduxFlutter = "/ReduxFlutter";
+  static const String ReduxViewQuestion = "/redux-view-question";
+  static const String CryptoBlockchainWallet = "/CryptoBlockchainWallet";
 }
