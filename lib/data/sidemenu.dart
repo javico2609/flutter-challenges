@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/models/menu_item.model.dart';
 
 List<MenuModel> menu = [
@@ -117,6 +118,13 @@ List<MenuModel> menu = [
     title: 'Blockchain Wallet template',
     icon: Icons.monetization_on,
     route: '/CryptoBlockchainWallet',
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
+  new MenuModel(
+    title: 'Network Gas Station template',
+    icon: Icons.card_travel,
+    route: NavigationConstrants.NetworkGasStationHome,
     type: MenuItemType.TEMPLATE,
     isRoot: true,
   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum Themes { light, dark, whapsapp, gameOrganizer, smartHome }
+enum Themes { light, dark, whapsapp, gameOrganizer, smartHome, networkGas }
 
 ThemeData getThemeByType(Themes type) {
   switch (type) {
@@ -35,6 +35,13 @@ ThemeData getThemeByType(Themes type) {
         cardColor: Colors.white,
         //textTheme: TextTheme(),
       );
+    case Themes.networkGas:
+      {
+        return ThemeData(
+          brightness: Brightness.light,
+          fontFamily: 'Roboto',
+        );
+      }
     default:
       return ThemeData(
         brightness: Brightness.light,

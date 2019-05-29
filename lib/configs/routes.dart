@@ -16,6 +16,7 @@ import 'package:playground_flutter/pages/templates/furniture-clone/furniture-hom
 import 'package:playground_flutter/pages/templates/game-organizer-clone/game-organizer-home.dart';
 import 'package:playground_flutter/pages/templates/greenery-clone/greenery-home.dart';
 import 'package:playground_flutter/pages/templates/hospital-dashboard-clone/hospital-dashboard-home.dart';
+import 'package:playground_flutter/pages/templates/network-of-gas-stations-clone/network-of-gas-stations-home.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-home.dart';
 import 'package:playground_flutter/pages/templates/profile-one.dart';
 import 'package:playground_flutter/pages/templates/real-estate-clone/real-estate-home.dart';
@@ -67,6 +68,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, PreviewQuestion());
     case NavigationConstrants.CryptoBlockchainWallet:
       return buildRoute(settings, CryptoBlockchainWallet());
+    case NavigationConstrants.NetworkGasStationHome:
+      return buildRoute(settings, NetworkGasStationHome());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:

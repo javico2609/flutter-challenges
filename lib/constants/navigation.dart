@@ -30,4 +30,5 @@ class NavigationConstrants {
   static const String ReduxFlutter = "/ReduxFlutter";
   static const String ReduxViewQuestion = "/redux-view-question";
   static const String CryptoBlockchainWallet = "/CryptoBlockchainWallet";
+  static const String NetworkGasStationHome = "/NetworkGasStation";
 }

@@ -69,6 +69,10 @@ flutter:
     - family: Iconfont
       fonts:
         - asset: assets/fonts/icofont/icofont.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
