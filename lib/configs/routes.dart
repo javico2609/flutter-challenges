@@ -4,6 +4,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/home.dart';
 import 'package:playground_flutter/pages/code_examples/auth_google/auth_google.dart';
+import 'package:playground_flutter/pages/code_examples/mapbox/mapbox.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_with_float_button.dart';
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
@@ -70,6 +71,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, CryptoBlockchainWallet());
     case NavigationConstrants.NetworkGasStationHome:
       return buildRoute(settings, NetworkGasStationHome());
+    case NavigationConstrants.MapBoxDemo:
+      return buildRoute(settings, MapBoxDemo());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
