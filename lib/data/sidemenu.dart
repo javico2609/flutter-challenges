@@ -132,7 +132,7 @@ List<MenuModel> menu = [
     title: 'MapBoxDemo example',
     icon: Icons.map,
     route: NavigationConstrants.MapBoxDemo,
-    type: MenuItemType.TEMPLATE,
+    type: MenuItemType.CODE,
     isRoot: true,
   ),
 ];

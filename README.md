@@ -4,13 +4,15 @@
 
 <img src="ss1.png" height="300em" /> <img src="ss2.png" height="300em" /> <img src="ss3.gif" height="300em" /> <img src="ss3.png" height="300em" /> <img src="ss4.png" height="300em" /> <img src="ss5.gif" height="300em" /> <img src="ss5.png" height="300em" /> <img src="ss6.png" height="300em" />
 <img src="ss6.gif" height="300em" /> <img src="ss7.png" height="300em" /> <img src="ss8.png" height="300em" /> <img src="ss9.png" height="300em" />
-<img src="ss10.png" height="300em" /> <img src="ss11.png" height="300em" /> <img src="ss7.gif" height="300em" /> <img src="ss8.gif" height="300em" /> <img src="ss13.png" height="300em" /> <img src="ss14.png" height="300em" /> <img src="ss15.png" height="300em" /> <img src="ss16.png" height="300em" /> <img src="ss9.gif" height="300em" />
+<img src="ss10.png" height="300em" /> <img src="ss11.png" height="300em" /> <img src="ss7.gif" height="300em" /> <img src="ss8.gif" height="300em" /> <img src="ss13.png" height="300em" /> <img src="ss14.png" height="300em" /> <img src="ss15.png" height="300em" /> <img src="ss16.png" height="300em" /> <img src="ss9.gif" height="300em" /> <img src="ss17.png" height="300em" />
 
 ### Created & Maintained By
 
 [Javier González](https://github.com/javico2609)
 
 ###### Native integration like firebase it's only supported by android platform, you need add this config for IOS or disable this feature if you want run the app. ):
+
+###### MapBox example: change in AndroidManifest.xml the 'MAPBOX_API_KEY'
 
 ## Social links
 
