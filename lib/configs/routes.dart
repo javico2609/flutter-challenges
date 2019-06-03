@@ -10,6 +10,7 @@ import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_wi
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
 import 'package:playground_flutter/pages/code_examples/redux/preview_question.dart';
 import 'package:playground_flutter/pages/code_examples/redux/redux_flutter.dart';
+import 'package:playground_flutter/pages/code_examples/sqlite/sqlite.dart';
 import 'package:playground_flutter/pages/code_examples/webview/webview.dart';
 import 'package:playground_flutter/pages/templates/crypto-blockchain-wallet-clone/crypto-blockchain-wallet.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
@@ -73,6 +74,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, NetworkGasStationHome());
     case NavigationConstrants.MapBoxDemo:
       return buildRoute(settings, MapBoxDemo());
+    case NavigationConstrants.SqliteDemo:
+      return buildRoute(settings, SqliteDemo());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:

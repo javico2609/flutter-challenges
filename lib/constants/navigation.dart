@@ -32,4 +32,5 @@ class NavigationConstrants {
   static const String CryptoBlockchainWallet = "/CryptoBlockchainWallet";
   static const String NetworkGasStationHome = "/NetworkGasStation";
   static const String MapBoxDemo = "/MapBoxDemo";
+  static const String SqliteDemo = "/SqliteDemo";
 }

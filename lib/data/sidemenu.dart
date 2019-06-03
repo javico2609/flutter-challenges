@@ -135,4 +135,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: true,
   ),
+  new MenuModel(
+    title: 'Sqlite example',
+    icon: Icons.insert_link,
+    route: NavigationConstrants.SqliteDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
 ];

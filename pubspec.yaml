@@ -33,8 +33,12 @@ dependencies:
   get_it:
   flushbar:
   mapbox_gl: ^0.0.3
+  sqflite: ^1.1.0
+  json_annotation: ^2.4.0
 
 dev_dependencies:
+  build_runner: ^1.0.0
+  json_serializable: ^3.0.0
   flutter_test:
     sdk: flutter
 
