@@ -31,7 +31,7 @@ dependencies:
   flutter_redux:
   redux_logging:
   get_it:
-  flushbar:
+  flushbar: "1.5.3"
   mapbox_gl: ^0.0.3
   sqflite: ^1.1.0
   json_annotation: ^2.4.0
