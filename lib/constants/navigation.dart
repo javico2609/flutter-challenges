@@ -33,4 +33,5 @@ class NavigationConstrants {
   static const String NetworkGasStationHome = "/NetworkGasStation";
   static const String MapBoxDemo = "/MapBoxDemo";
   static const String SqliteDemo = "/SqliteDemo";
+  static const String FirebaseDemo = "/FirebaseDemo";
 }

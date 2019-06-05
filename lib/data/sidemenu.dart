@@ -136,9 +136,16 @@ List<MenuModel> menu = [
     isRoot: true,
   ),
   new MenuModel(
-    title: 'Sqlite example',
+    title: 'Sqlite CRUD example',
     icon: Icons.insert_link,
     route: NavigationConstrants.SqliteDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
+  new MenuModel(
+    title: 'Firebase CRUD example',
+    icon: Icons.insert_link,
+    route: NavigationConstrants.FirebaseDemo,
     type: MenuItemType.CODE,
     isRoot: false,
   ),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'baseball.model.g.dart';
@@ -20,4 +21,10 @@ class BaseballModel {
       _$BaseballModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseballModelToJson(this);
+
+  BaseballModel.fromSnapshot(DocumentSnapshot snapshot)
+      : key = snapshot.documentID,
+        name = snapshot['name'],
+        coach = snapshot['coach'],
+        players = snapshot['players'];
 }

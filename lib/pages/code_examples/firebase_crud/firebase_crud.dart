@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:playground_flutter/configs/ioc.dart';
 import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/models/baseball.model.dart';
-import 'package:playground_flutter/services/sqlite_basebal_team.service.dart';
+import 'package:playground_flutter/services/firebase_basebal_team.service.dart';
 import 'package:playground_flutter/shared/widgets/crud_demo_list_item.widget.dart';
 
-class SqliteDemo extends StatefulWidget {
-  SqliteDemo({Key key}) : super(key: key);
+class FirebaseDemo extends StatefulWidget {
+  const FirebaseDemo({Key key}) : super(key: key);
 
-  _SqliteDemoState createState() => _SqliteDemoState();
+  @override
+  _FirebaseDemoState createState() => _FirebaseDemoState();
 }
 
-class _SqliteDemoState extends State<SqliteDemo> {
-  SqliteBaseballService _databaseService;
+class _FirebaseDemoState extends State<FirebaseDemo> {
+  FirebaseBaseballService _databaseService;
+  //Control my form
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //Model for create or update action
   BaseballModel _model;
+  // Controller for my fields
   TextEditingController _name = TextEditingController(),
       _coach = TextEditingController(),
       _players = TextEditingController();
@@ -23,13 +27,8 @@ class _SqliteDemoState extends State<SqliteDemo> {
   void initState() {
     super.initState();
 
-    _databaseService = Ioc.get<SqliteBaseballService>();
+    _databaseService = Ioc.get<FirebaseBaseballService>();
     _model = new BaseballModel();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _databaseService.seedData();
-      setState(() {});
-    });
   }
 
   @override
@@ -38,7 +37,7 @@ class _SqliteDemoState extends State<SqliteDemo> {
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: Text('Sqlite demo'),
+        title: Text('Firebase CRUD'),
       ),
       body: Column(
         children: <Widget>[
@@ -52,7 +51,7 @@ class _SqliteDemoState extends State<SqliteDemo> {
                   children: <Widget>[
                     TextFormField(
                       controller: _name,
-                      onSaved: ((value) => _model.name = value),
+                      onSaved: (value) => _model.name = value,
                       validator: (value) {
                         if (value.isEmpty) return "Name its required";
                       },
@@ -105,14 +104,18 @@ class _SqliteDemoState extends State<SqliteDemo> {
                             ),
                           ),
                           onPressed: () async {
+                            //Same logic in sqlite crud demo
+                            bool resultOperation = false;
                             if (_model.key == null || _model.key == 0) {
-                              await _create(_model);
+                              resultOperation = await _create();
                             } else {
-                              await _update(_model);
+                              resultOperation = await _update();
                             }
 
-                            Navigator.of(context).pushNamed(
-                                NavigationConstrants.NOTIFICATION_SUCCESS);
+                            if (resultOperation) {
+                              Navigator.of(context).pushNamed(
+                                  NavigationConstrants.NOTIFICATION_SUCCESS);
+                            }
                           },
                         ),
                         SizedBox(width: 10),
@@ -137,64 +140,82 @@ class _SqliteDemoState extends State<SqliteDemo> {
           ),
           Expanded(
             child: StreamBuilder(
-              stream: _databaseService.list(),
-              builder: (_, AsyncSnapshot<List<BaseballModel>> snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: Text("No data found !!!"),
-                  );
-                }
-
-                return ListView(
-                  children: snapshot.data.map((item) {
-                    return CrudDemoListItem(
-                      item: item,
-                      onPressedDelete: (item) async {
-                        await _delete(item);
-                        Navigator.of(context).pushNamed(
-                            NavigationConstrants.NOTIFICATION_SUCCESS);
-                      },
-                      onPressedEdit: (item) {
-                        setState(() {
-                          _model = item;
-                          _name.text = item.name;
-                          _coach.text = item.coach;
-                          _players.text = item.players.toString();
-                        });
-                      },
+                stream: _databaseService.list(),
+                builder: (_, AsyncSnapshot<List<BaseballModel>> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: Theme(
+                        data: Theme.of(context)
+                            .copyWith(accentColor: Colors.blue),
+                        child: CircularProgressIndicator(),
+                      ),
                     );
-                  }).toList(),
-                );
-              },
-            ),
+                  }
+
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: Text("No data found !!!"),
+                    );
+                  }
+
+                  return ListView(
+                    children: snapshot.data
+                        .map((item) => CrudDemoListItem(
+                              item: item,
+                              onPressedDelete: _delete,
+                              onPressedEdit: (item) {
+                                setState(() {
+                                  // set model and textfield controllers
+                                  _model = item;
+                                  _name.text = item.name;
+                                  _coach.text = item.coach;
+                                  _players.text = item.players.toString();
+                                });
+                              },
+                            ))
+                        .toList(),
+                  );
+                }),
           )
         ],
       ),
     );
   }
 
-  Future<void> _delete(BaseballModel item) async {
-    await _databaseService.delete(item);
-    setState(() {});
+  _delete(BaseballModel item) async {
+    bool result = await _databaseService.delete(item);
+    if (result) {
+      Navigator.of(context)
+          .pushNamed(NavigationConstrants.NOTIFICATION_SUCCESS);
+      return;
+    }
+
+    Navigator.of(context).pushNamed(NavigationConstrants.NOTIFICATION_ERROR);
   }
 
-  Future<void> _create(BaseballModel item) async {
+  Future<bool> _create() async {
+    bool result = false;
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      await _databaseService.create(item);
+      result = await _databaseService.create(_model);
       _reset();
     }
+
+    return result;
   }
 
-  Future<void> _update(BaseballModel item) async {
+  Future<bool> _update() async {
+    bool result = false;
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      await _databaseService.update(item);
+      result = await _databaseService.update(_model);
       _reset();
     }
+
+    return result;
   }
 
-  void _reset() {
+  _reset() {
     setState(() {
       _formKey.currentState.reset();
       _model = new BaseballModel();

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:playground_flutter/services/baseball-team.service.dart';
+import 'package:playground_flutter/services/firebase_basebal_team.service.dart';
+import 'package:playground_flutter/services/sqlite_basebal_team.service.dart';
 import 'package:playground_flutter/services/database.service.dart';
 import 'package:playground_flutter/services/stack_overflow.service.dart';
 import 'package:playground_flutter/services/web.client.dart';
@@ -11,7 +12,9 @@ class Ioc {
     ioc.registerSingleton<WebClient>(new WebClient());
     ioc.registerSingleton<StackOverflowService>(new StackOverflowService());
     ioc.registerSingleton<SqliteDatabaseService>(new SqliteDatabaseService());
-    ioc.registerSingleton<BaseballService>(new BaseballService());
+    ioc.registerSingleton<SqliteBaseballService>(new SqliteBaseballService());
+    ioc.registerSingleton<FirebaseBaseballService>(
+        new FirebaseBaseballService());
   }
 
   static T get<T>() {

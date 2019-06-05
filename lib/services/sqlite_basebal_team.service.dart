@@ -3,10 +3,10 @@ import 'package:playground_flutter/constants/database.dart';
 import 'package:playground_flutter/models/baseball.model.dart';
 import 'package:playground_flutter/services/database.service.dart';
 
-class BaseballService {
+class SqliteBaseballService {
   SqliteDatabaseService _database;
 
-  BaseballService([SqliteDatabaseService db])
+  SqliteBaseballService([SqliteDatabaseService db])
       : _database = db ?? ioc<SqliteDatabaseService>();
 
   Stream<List<BaseballModel>> list() => Stream.fromFuture(

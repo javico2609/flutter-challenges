@@ -4,6 +4,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/home.dart';
 import 'package:playground_flutter/pages/code_examples/auth_google/auth_google.dart';
+import 'package:playground_flutter/pages/code_examples/firebase_crud/firebase_crud.dart';
 import 'package:playground_flutter/pages/code_examples/mapbox/mapbox.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_with_float_button.dart';
@@ -76,6 +77,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, MapBoxDemo());
     case NavigationConstrants.SqliteDemo:
       return buildRoute(settings, SqliteDemo());
+    case NavigationConstrants.FirebaseDemo:
+      return buildRoute(settings, FirebaseDemo());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
