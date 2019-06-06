@@ -8,6 +8,7 @@ import 'package:playground_flutter/pages/code_examples/firebase_crud/firebase_cr
 import 'package:playground_flutter/pages/code_examples/mapbox/mapbox.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/bottom_with_float_button.dart';
+import 'package:playground_flutter/pages/code_examples/pdf_and_csv/pdf.dart';
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
 import 'package:playground_flutter/pages/code_examples/redux/preview_question.dart';
 import 'package:playground_flutter/pages/code_examples/redux/redux_flutter.dart';
@@ -79,6 +80,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, SqliteDemo());
     case NavigationConstrants.FirebaseDemo:
       return buildRoute(settings, FirebaseDemo());
+    case NavigationConstrants.PdfGeneratorDemo:
+      return buildRoute(settings, PdfGeneratorDemo());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:

@@ -149,4 +149,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: false,
   ),
+  new MenuModel(
+    title: 'PDF create and view',
+    icon: Icons.picture_as_pdf,
+    route: NavigationConstrants.PdfGeneratorDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
 ];
