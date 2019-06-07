@@ -1,28 +1,31 @@
 import 'dart:io';
-import 'package:pdf/widgets.dart' as pdfLib;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/configs/ioc.dart';
 import 'package:playground_flutter/models/baseball.model.dart';
-import 'package:playground_flutter/pages/code_examples/pdf_and_csv/pdf_viewer.dart';
+import 'package:playground_flutter/pages/code_examples/pdf_and_csv/view_csv_data.dart';
 import 'package:playground_flutter/services/sqlite_basebal_team.service.dart';
 import 'package:playground_flutter/shared/widgets/crud_demo_list_item.widget.dart';
+import 'package:csv/csv.dart';
 
-class PdfGeneratorDemo extends StatelessWidget {
+class CsvGeneratorDemo extends StatelessWidget {
   final SqliteBaseballService _databaseService =
       Ioc.get<SqliteBaseballService>();
 
-  PdfGeneratorDemo({Key key}) : super(key: key);
+  CsvGeneratorDemo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pdf - generate and view'),
+        title: Text('CSV generate and load'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.picture_as_pdf),
-            onPressed: () => _generatePdfAndView(context),
+          InkWell(
+            onTap: () => _generateCSVAndView(context),
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('CSV'),
+            ),
           ),
           SizedBox(width: 10),
         ],
@@ -54,29 +57,31 @@ class PdfGeneratorDemo extends StatelessWidget {
     );
   }
 
-  _generatePdfAndView(context) async {
+  Future<void> _generateCSVAndView(context) async {
     List<BaseballModel> data = await _databaseService.list().first;
-    final pdfLib.Document pdf = pdfLib.Document(deflate: zlib.encode);
+    List<List<String>> csvData = [
+      // headers
+      <String>['Name', 'Coach', 'players'],
+      // data
+      ...data.map((item) => [item.name, item.coach, item.players.toString()]),
+    ];
 
-    pdf.addPage(
-      pdfLib.MultiPage(
-        build: (context) => [
-              pdfLib.Table.fromTextArray(context: context, data: <List<String>>[
-                <String>['Name', 'Coach', 'players'],
-                ...data.map(
-                    (item) => [item.name, item.coach, item.players.toString()])
-              ]),
-            ],
-      ),
-    );
+    String csv = const ListToCsvConverter().convert(csvData);
 
     final String dir = (await getApplicationDocumentsDirectory()).path;
-    final String path = '$dir/baseball_teams.pdf';
+    final String path = '$dir/baseball_teams.csv';
+
+    // create file
     final File file = File(path);
-    await file.writeAsBytes(pdf.save());
+    // Save csv string using default configuration
+    // , as field separator
+    // " as text delimiter and
+    // \r\n as eol.
+    await file.writeAsString(csv);
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => PdfViewerPage(path: path),
+        builder: (_) => LoadAndViewCsvPage(path: path),
       ),
     );
   }

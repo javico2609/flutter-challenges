@@ -35,4 +35,5 @@ class NavigationConstrants {
   static const String SqliteDemo = "/SqliteDemo";
   static const String FirebaseDemo = "/FirebaseDemo";
   static const String PdfGeneratorDemo = "/PdfGeneratorDemo";
+  static const String CsvGeneratorDemo = "/CsvGeneratorDemo";
 }

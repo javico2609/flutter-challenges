@@ -156,4 +156,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: false,
   ),
+  new MenuModel(
+    title: 'CSV create and view',
+    icon: Icons.data_usage,
+    route: NavigationConstrants.CsvGeneratorDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
 ];
