@@ -24,6 +24,7 @@ import 'package:playground_flutter/pages/templates/hospital-dashboard-clone/hosp
 import 'package:playground_flutter/pages/templates/network-of-gas-stations-clone/network-of-gas-stations-home.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-home.dart';
 import 'package:playground_flutter/pages/templates/profile-one.dart';
+import 'package:playground_flutter/pages/templates/rahul-sliver-profile-demo/rahul-sliver-profile.dart';
 import 'package:playground_flutter/pages/templates/real-estate-clone/real-estate-home.dart';
 import 'package:playground_flutter/pages/templates/smart-home-clone/smart-home-home.dart';
 import 'package:playground_flutter/pages/templates/smart-plant-clone/smart-plant-home.dart';
@@ -85,6 +86,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, PdfGeneratorDemo());
     case NavigationConstrants.CsvGeneratorDemo:
       return buildRoute(settings, CsvGeneratorDemo());
+    case NavigationConstrants.RahulSliverProfile:
+      return buildRoute(settings, RahulSliverProfile());
 
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:

@@ -163,4 +163,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: false,
   ),
+  new MenuModel(
+    title: 'Rahul SliverProfile demo',
+    icon: Icons.data_usage,
+    route: NavigationConstrants.RahulSliverProfile,
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
 ];

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-enum Themes { light, dark, whapsapp, gameOrganizer, smartHome, networkGas }
+enum Themes {
+  light,
+  dark,
+  whapsapp,
+  gameOrganizer,
+  smartHome,
+  networkGas,
+  sliverProfile
+}
 
 ThemeData getThemeByType(Themes type) {
   switch (type) {
@@ -39,6 +47,17 @@ ThemeData getThemeByType(Themes type) {
       {
         return ThemeData(
           brightness: Brightness.light,
+          fontFamily: 'Roboto',
+        );
+      }
+    case Themes.sliverProfile:
+      {
+        return ThemeData(
+          brightness: Brightness.light,
+          textTheme: TextTheme(
+              title: TextStyle(
+            color: Colors.black,
+          )),
           fontFamily: 'Roboto',
         );
       }

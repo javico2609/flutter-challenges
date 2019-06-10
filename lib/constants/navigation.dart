@@ -36,4 +36,5 @@ class NavigationConstrants {
   static const String FirebaseDemo = "/FirebaseDemo";
   static const String PdfGeneratorDemo = "/PdfGeneratorDemo";
   static const String CsvGeneratorDemo = "/CsvGeneratorDemo";
+  static const String RahulSliverProfile = "/RahulSliverProfile";
 }
