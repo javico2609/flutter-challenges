@@ -21,7 +21,7 @@ class _RahulSliverProfileState extends State<RahulSliverProfile> {
     super.initState();
     themeBloc.changeTheme(Themes.sliverProfile);
     playerController = VideoPlayerController.asset(
-        'assets/videos/big_buck_bunny_720p_20mb.mp4')
+        'assets/videos/SampleVideo_1280x720_1mb.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
