@@ -18,10 +18,19 @@ class ReduxFlutter extends StatelessWidget {
       ),
       body: StoreConnector<AppState, ReduxViewModel>(
         distinct: true,
-        rebuildOnChange: true,
         converter: (store) => ReduxViewModel.fromStore(store),
         onInit: (store) => store.dispatch(new LoadQuestionAction()),
         builder: (_, vm) {
+          print("Distinct check ${vm.state.questions.length} !!!!!!");
+          if (vm.state.loading) {
+            return Center(
+              child: Theme(
+                data: Theme.of(context).copyWith(accentColor: Colors.blue),
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+
           return ListView.builder(
             itemCount: vm.state.questions.length,
             itemBuilder: (_, int index) {

@@ -3,15 +3,22 @@ import 'package:playground_flutter/models/stackoverflow.model.dart';
 class StackOverflowState {
   List<StackOverflowModel> questions;
   StackOverflowModel selected;
+  bool loading;
 
-  StackOverflowState({this.questions, this.selected});
+  StackOverflowState({
+    this.questions,
+    this.selected,
+    this.loading,
+  });
 
   StackOverflowState.initialState()
       : questions = List.unmodifiable([]),
-        selected = null;
+        selected = null,
+        loading = false;
 
-  StackOverflowState copyWith({q, s}) => new StackOverflowState(
-        questions: q ?? questions,
-        selected: s ?? selected,
+  StackOverflowState copyWith({q, s, l}) => new StackOverflowState(
+        questions: q ?? this.questions,
+        selected: s ?? this.selected,
+        loading: l ?? this.loading,
       );
 }
