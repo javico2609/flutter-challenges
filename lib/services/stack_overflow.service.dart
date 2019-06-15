@@ -1,15 +1,18 @@
-import 'package:playground_flutter/models/stackoverflow.model.dart';
+import 'package:playground_flutter/models/stackoverflow_response.model.dart';
 import 'package:playground_flutter/services/web.client.dart';
 
 class StackOverflowService {
-  Future<List<StackOverflowModel>> list() async {
-    List<StackOverflowModel> items = [];
-    var result = await http.get('');
-    List<dynamic> data = result['items'];
+  Future<StackOverflowResponseModel> list([int page = 1]) async {
+    var query = {
+      'order': 'desc',
+      'sort': 'activity',
+      'site': 'stackoverflow',
+      'page': page,
+      'pagesize': 5,
+    };
 
-    data.forEach((q) {
-      items.add(StackOverflowModel.fromJson(q));
-    });
-    return items;
+    var response = await http.get('', query);
+
+    return StackOverflowResponseModel.fromJson(response);
   }
 }

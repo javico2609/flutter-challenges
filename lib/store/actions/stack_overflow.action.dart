@@ -1,12 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:playground_flutter/models/stackoverflow.model.dart';
 
-class LoadQuestionAction {}
+class LoadQuestionAction {
+  final bool paginate;
+
+  LoadQuestionAction({this.paginate});
+}
 
 class LoadQuestionSuccessAction {
   final List<StackOverflowModel> questions;
+  final bool paginate;
+  final bool hasMore;
 
-  LoadQuestionSuccessAction({@required this.questions});
+  LoadQuestionSuccessAction({
+    @required this.questions,
+    this.paginate,
+    this.hasMore,
+  });
 }
 
 class LoadQuestionFailureAction {

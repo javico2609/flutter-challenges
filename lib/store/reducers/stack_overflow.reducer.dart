@@ -1,21 +1,36 @@
-import 'package:playground_flutter/models/stackoverflow.model.dart';
 import 'package:playground_flutter/store/actions/stack_overflow.action.dart';
 import 'package:playground_flutter/store/state/stack_overflow.state.dart';
 import 'package:redux/redux.dart';
+import 'package:uuid/uuid.dart';
+
+String uuid() => new Uuid().v1();
 
 StackOverflowState loadQuestions(
     StackOverflowState state, LoadQuestionAction action) {
   return state.copyWith(
-    l: true,
-    q: new List<StackOverflowModel>(),
+    // activate global loading only if not pagination active
+    l: action.paginate ? false : true,
+    paginate: action.paginate,
+    uuid: uuid(),
+    // reset page if use RefreshIndicator or first loadind
+    page: action.paginate ? state.page : 1,
   );
 }
 
 StackOverflowState loadQuestionsSuccess(
     StackOverflowState state, LoadQuestionSuccessAction action) {
   return state.copyWith(
-    q: action.questions,
     l: false,
+    // if pagination its actived i include the new items to the existing
+    q: [
+      if (action.paginate) ...state.questions,
+      ...action.questions,
+    ],
+    page: action.hasMore ? state.page + 1 : state.page,
+    // forcing  to change the state and execute StoreConector builder function
+    uuid: uuid(),
+    has_more: action.hasMore,
+    paginate: false,
   );
 }
 

@@ -19,11 +19,19 @@ List<Middleware<AppState>> overflowMiddlewares() {
 Middleware<AppState> _createLoadQuestionRequest(StackOverflowService service) {
   return (Store<AppState> store, action, NextDispatcher next) async {
     try {
-      // Make sure to forward actions to the next middleware in the chain!
+      // Propagate the action first for show loading indicator ( global and pagination )
       next(action);
 
-      var questions = await service.list();
-      store.dispatch(new LoadQuestionSuccessAction(questions: questions));
+      var response = await service.list(store.state.stackOverflowState.page);
+
+      // dispatch success loading question ( first load and pagination load )
+      store.dispatch(
+        new LoadQuestionSuccessAction(
+          questions: response.items,
+          paginate: action.paginate,
+          hasMore: response.hasMore,
+        ),
+      );
     } catch (error) {
       store.dispatch(new LoadQuestionFailureAction(error: error));
     }

@@ -34,11 +34,15 @@ class QuestionItem extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.all(0),
-                leading: CircleAvatar(
-                  backgroundImage: model.owner.profileImage != null
-                      ? NetworkImage(model.owner.profileImage)
-                      : ExactAssetImage("assets/images/myAvatar.png"),
-                ),
+                leading: model.owner.profileImage != null
+                    ? FadeInImage.assetNetwork(
+                        placeholder: 'assets/images/myAvatar.png',
+                        image: model.owner.profileImage,
+                      )
+                    : CircleAvatar(
+                        backgroundImage:
+                            ExactAssetImage("assets/images/myAvatar.png"),
+                      ),
                 title: Text(model.owner.displayName),
                 subtitle: Text("4 hours ago"),
                 trailing: IconButton(

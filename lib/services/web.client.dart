@@ -29,8 +29,8 @@ class WebClient {
     return response.data;
   }
 
-  Future<dynamic> get(String uri) async {
-    final Response response = await dio.get(uri);
+  Future<dynamic> get(String uri, [data]) async {
+    final Response response = await dio.get(uri, data: data);
     return commonBehavior(response);
   }
 
