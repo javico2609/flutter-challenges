@@ -4,6 +4,7 @@ import 'package:playground_flutter/services/sqlite_basebal_team.service.dart';
 import 'package:playground_flutter/services/database.service.dart';
 import 'package:playground_flutter/services/stack_overflow.service.dart';
 import 'package:playground_flutter/services/web.client.dart';
+import 'package:playground_flutter/shared/utils/touchid.util.dart';
 
 final GetIt ioc = new GetIt();
 
@@ -15,6 +16,7 @@ class Ioc {
     ioc.registerSingleton<SqliteBaseballService>(new SqliteBaseballService());
     ioc.registerSingleton<FirebaseBaseballService>(
         new FirebaseBaseballService());
+    ioc.registerSingleton<TouchIdUtil>(new TouchIdUtil());
   }
 
   static T get<T>() {

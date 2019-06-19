@@ -157,6 +157,13 @@ List<MenuModel> menu = [
     isRoot: false,
   ),
   new MenuModel(
+    title: 'TouchId',
+    icon: Icons.fingerprint,
+    route: NavigationConstrants.TouchIdDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
+  new MenuModel(
     title: 'CSV create and view',
     icon: Icons.data_usage,
     route: NavigationConstrants.CsvGeneratorDemo,

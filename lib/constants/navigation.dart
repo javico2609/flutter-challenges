@@ -37,4 +37,5 @@ class NavigationConstrants {
   static const String PdfGeneratorDemo = "/PdfGeneratorDemo";
   static const String CsvGeneratorDemo = "/CsvGeneratorDemo";
   static const String RahulSliverProfile = "/RahulSliverProfile";
+  static const String TouchIdDemo = "/TouchIdDemo";
 }
