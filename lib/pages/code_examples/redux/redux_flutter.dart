@@ -5,6 +5,7 @@ import 'package:playground_flutter/pages/code_examples/redux/question_item.dart'
 import 'package:playground_flutter/pages/code_examples/redux/redux.viewmodel.dart';
 import 'package:playground_flutter/store/actions/stack_overflow.action.dart';
 import 'package:playground_flutter/store/state/app.state.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ReduxFlutter extends StatefulWidget {
   const ReduxFlutter({Key key}) : super(key: key);
@@ -14,7 +15,8 @@ class ReduxFlutter extends StatefulWidget {
 }
 
 class _ReduxFlutterState extends State<ReduxFlutter> {
-  ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = new ScrollController();
+  final PublishSubject<String> _onTextChanged = new PublishSubject();
 
   @override
   void initState() {
@@ -32,11 +34,23 @@ class _ReduxFlutterState extends State<ReduxFlutter> {
         }
       }
     });
+
+    _onTextChanged
+        // If the text has not changed, do not perform a new search
+        .distinct()
+        // Wait for the user to stop typing for 250ms before running a search
+        .debounceTime(const Duration(milliseconds: 250))
+        .listen((String text) {
+      // get the store
+      var store = StoreProvider.of<AppState>(context);
+      store.dispatch(new SearchByAction(searchText: text));
+    });
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _onTextChanged.close();
     super.dispose();
   }
 
@@ -45,7 +59,26 @@ class _ReduxFlutterState extends State<ReduxFlutter> {
     return Scaffold(
       backgroundColor: Color(0xffeff3f6),
       appBar: AppBar(
-        title: Text('Redux example'),
+        title: Theme(
+          data: Theme.of(context).copyWith(cursorColor: Colors.white),
+          child: TextField(
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.zero,
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              focusedBorder: InputBorder.none,
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+            ),
+            onChanged: _onTextChanged.add,
+          ),
+        ),
       ),
       body: StoreConnector<AppState, ReduxViewModel>(
         distinct: true,
@@ -72,11 +105,10 @@ class _ReduxFlutterState extends State<ReduxFlutter> {
             },
             child: ListView.builder(
               controller: _scrollController,
-              itemCount: vm.state.questions.length,
+              itemCount: vm.questions.length,
               itemBuilder: (_, int index) {
                 // show pagination loading indicator at the bottom of the list
-                if (vm.state.paginate &&
-                    vm.state.questions.length - 1 == index) {
+                if (vm.state.paginate && vm.questions.length - 1 == index) {
                   return Container(
                     height: 50,
                     child: Center(
@@ -89,7 +121,7 @@ class _ReduxFlutterState extends State<ReduxFlutter> {
                   );
                 }
 
-                StackOverflowModel model = vm.state.questions[index];
+                StackOverflowModel model = vm.questions[index];
                 return QuestionItem(
                   key: Key(model.questionId.toString()),
                   model: model,

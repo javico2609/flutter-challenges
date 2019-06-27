@@ -42,3 +42,9 @@ class ViewQuestionAction {
 
   ViewQuestionAction({@required this.question});
 }
+
+class SearchByAction {
+  final String searchText;
+
+  SearchByAction({this.searchText});
+}

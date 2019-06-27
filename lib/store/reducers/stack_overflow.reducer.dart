@@ -48,6 +48,16 @@ StackOverflowState deleteQuestion(
   );
 }
 
+// Update store with the new search text.
+StackOverflowState filterByAuthor(
+    StackOverflowState state, SearchByAction action) {
+  return state.copyWith(
+    // forcing  to change the state and execute StoreConector builder function
+    uuid: uuid(),
+    searchText: action.searchText,
+  );
+}
+
 final Reducer<StackOverflowState> stackOverflowReducer =
     combineReducers<StackOverflowState>([
   new TypedReducer<StackOverflowState, LoadQuestionSuccessAction>(
@@ -56,4 +66,5 @@ final Reducer<StackOverflowState> stackOverflowReducer =
   new TypedReducer<StackOverflowState, DeleteSuccessQuestionAction>(
       deleteQuestion),
   new TypedReducer<StackOverflowState, ViewQuestionAction>(viewQuestion),
+  new TypedReducer<StackOverflowState, SearchByAction>(filterByAuthor),
 ]);

@@ -113,6 +113,7 @@ List<MenuModel> menu = [
     icon: Icons.settings_applications,
     type: MenuItemType.CODE,
     route: '/ReduxFlutter',
+    isRoot: true,
   ),
   new MenuModel(
     title: 'Blockchain Wallet template',

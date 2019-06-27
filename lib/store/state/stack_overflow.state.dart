@@ -11,6 +11,8 @@ class StackOverflowState {
   // to force the change of state
   final String uuid;
 
+  final String searchText;
+
   StackOverflowState({
     this.questions,
     this.selected,
@@ -19,6 +21,7 @@ class StackOverflowState {
     this.paginate,
     this.has_more,
     this.uuid,
+    this.searchText,
   });
 
   StackOverflowState.initialState()
@@ -28,16 +31,19 @@ class StackOverflowState {
         paginate = false,
         page = 1,
         has_more = false,
-        uuid = '';
+        uuid = '',
+        searchText = '';
 
-  StackOverflowState copyWith({q, s, l, paginate, has_more, uuid, page}) =>
+  StackOverflowState copyWith(
+          {q, s, l, paginate, has_more, uuid, page, searchText}) =>
       new StackOverflowState(
         questions: q ?? this.questions,
         selected: s ?? this.selected,
         loading: l ?? this.loading,
-        paginate: paginate ?? paginate,
+        paginate: paginate ?? this.paginate,
         has_more: has_more ?? this.has_more,
         uuid: uuid ?? this.uuid,
         page: page ?? this.page,
+        searchText: searchText ?? this.searchText,
       );
 }
