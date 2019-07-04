@@ -7,16 +7,20 @@ final Dio dio = new Dio()
   ..options.connectTimeout = 5000
   ..options.receiveTimeout
   ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
-  ..interceptor.request.onSend = (Options options) async {
-    var prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString(Environment.tokenKey);
+  ..interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (RequestOptions options) async {
+        var prefs = await SharedPreferences.getInstance();
+        var token = prefs.getString(Environment.tokenKey);
 
-    if (token != null) {
-      options.headers.putIfAbsent('Authorization', () => token);
-    }
+        if (token != null) {
+          options.headers.putIfAbsent('Authorization', () => token);
+        }
 
-    return options;
-  };
+        return options;
+      },
+    ),
+  );
 
 class WebClient {
   const WebClient();
@@ -30,7 +34,7 @@ class WebClient {
   }
 
   Future<dynamic> get(String uri, [data]) async {
-    final Response response = await dio.get(uri, data: data);
+    final Response response = await dio.get(uri, queryParameters: data);
     return commonBehavior(response);
   }
 
@@ -47,6 +51,15 @@ class WebClient {
     try {
       final Response response = await dio.put(uri, data: data);
       return commonBehavior(response);
+    } catch (e) {
+      throw ('An error occurred');
+    }
+  }
+
+  Future<void> download(
+      String url, savePath, ProgressCallback onProgress) async {
+    try {
+      await dio.download(url, savePath, onReceiveProgress: onProgress);
     } catch (e) {
       throw ('An error occurred');
     }

@@ -36,12 +36,16 @@ StackOverflowState loadQuestionsSuccess(
 
 StackOverflowState viewQuestion(
     StackOverflowState state, ViewQuestionAction action) {
-  return state.copyWith(s: action.question);
+  return state.copyWith(
+    s: action.question,
+    uuid: uuid(),
+  );
 }
 
 StackOverflowState deleteQuestion(
     StackOverflowState state, DeleteSuccessQuestionAction action) {
   return state.copyWith(
+    uuid: uuid(),
     q: state.questions
         .where((q) => q.questionId != action.question.questionId)
         .toList(),

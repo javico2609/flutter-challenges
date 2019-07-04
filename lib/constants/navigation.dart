@@ -38,4 +38,5 @@ class NavigationConstrants {
   static const String CsvGeneratorDemo = "/CsvGeneratorDemo";
   static const String RahulSliverProfile = "/RahulSliverProfile";
   static const String TouchIdDemo = "/TouchIdDemo";
+  static const String DownloadAndShareDemo = "/DownloadAndShareDemo";
 }

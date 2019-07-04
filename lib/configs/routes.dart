@@ -4,6 +4,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:playground_flutter/constants/navigation.dart';
 import 'package:playground_flutter/home.dart';
 import 'package:playground_flutter/pages/code_examples/auth_google/auth_google.dart';
+import 'package:playground_flutter/pages/code_examples/download_and_shared/download_and_share.dart';
 import 'package:playground_flutter/pages/code_examples/firebase_crud/firebase_crud.dart';
 import 'package:playground_flutter/pages/code_examples/mapbox/mapbox.dart';
 import 'package:playground_flutter/pages/code_examples/navigation-bars/3d_bottom_navigation_bar.dart';
@@ -91,7 +92,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, RahulSliverProfile());
     case NavigationConstrants.TouchIdDemo:
       return buildRoute(settings, TouchIdDemo());
-
+    case NavigationConstrants.DownloadAndShareDemo:
+      return buildRoute(settings, DownloadAndSharePage());
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
       return buildNotification(NotificationService.successFactory());

@@ -178,4 +178,11 @@ List<MenuModel> menu = [
     type: MenuItemType.TEMPLATE,
     isRoot: true,
   ),
+  new MenuModel(
+    title: 'Download and share',
+    icon: Icons.file_download,
+    route: NavigationConstrants.DownloadAndShareDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
 ];
