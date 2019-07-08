@@ -185,4 +185,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: false,
   ),
+  new MenuModel(
+    title: 'Screenshot demo',
+    icon: Icons.phone_iphone,
+    route: NavigationConstrants.ScreenshotDemo,
+    type: MenuItemType.CODE,
+    isRoot: false,
+  ),
 ];

@@ -39,4 +39,5 @@ class NavigationConstrants {
   static const String RahulSliverProfile = "/RahulSliverProfile";
   static const String TouchIdDemo = "/TouchIdDemo";
   static const String DownloadAndShareDemo = "/DownloadAndShareDemo";
+  static const String ScreenshotDemo = "/ScreenshotDemo";
 }

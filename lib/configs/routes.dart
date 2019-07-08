@@ -14,6 +14,7 @@ import 'package:playground_flutter/pages/code_examples/pdf_and_csv/pdf.dart';
 import 'package:playground_flutter/pages/code_examples/progress-button/progress-button.dart';
 import 'package:playground_flutter/pages/code_examples/redux/preview_question.dart';
 import 'package:playground_flutter/pages/code_examples/redux/redux_flutter.dart';
+import 'package:playground_flutter/pages/code_examples/screenshots/screenshots.dart';
 import 'package:playground_flutter/pages/code_examples/sqlite/sqlite.dart';
 import 'package:playground_flutter/pages/code_examples/touchid/touchid.dart';
 import 'package:playground_flutter/pages/code_examples/webview/webview.dart';
@@ -94,6 +95,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, TouchIdDemo());
     case NavigationConstrants.DownloadAndShareDemo:
       return buildRoute(settings, DownloadAndSharePage());
+    case NavigationConstrants.ScreenshotDemo:
+      return buildRoute(settings, ScreenshotPage());
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
       return buildNotification(NotificationService.successFactory());
