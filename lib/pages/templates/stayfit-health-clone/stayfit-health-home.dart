@@ -4,10 +4,6 @@ import 'package:playground_flutter/bloc/theme.bloc.dart';
 import 'package:playground_flutter/configs/themes.dart';
 import 'package:playground_flutter/pages/templates/stayfit-health-clone/progress_bar.dart';
 
-const Color _kKeyUmbraOpacity = Color(0x33000000); // alpha = 0.2
-const Color _kKeyPenumbraOpacity = Color(0x24000000); // alpha = 0.14
-const Color _kAmbientShadowOpacity = Color(0x1F000000); // alpha = 0.12
-
 class StayfitHealthPage extends StatefulWidget {
   StayfitHealthPage({Key key}) : super(key: key);
 
@@ -228,6 +224,7 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
                   '458',
                   'GRMS.',
                   'FOOD',
+                  true,
                 ),
                 _buildDashboardItem(
                   Color(0xFFEF453C),
@@ -245,18 +242,31 @@ class _StayfitHealthPageState extends State<StayfitHealthPage> {
     );
   }
 
-  Widget _buildDashboardItem(
-    Color color,
-    IconData icon,
-    double completedPercentage,
-    String value,
-    String unit,
-    String name,
-  ) {
+  Widget _buildDashboardItem(Color color, IconData icon,
+      double completedPercentage, String value, String unit, String name,
+      [bool useLight = false]) {
+    List<Color> colors = [
+      Color(0xFF311b5b),
+      Color(0xFF221441),
+    ];
+
+    if (useLight) {
+      colors = [
+        Color(0xFF311b5b),
+        Color(0xFF321c5c),
+      ];
+    }
+
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        color: Color(0xFF422479),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: colors,
+            begin: FractionalOffset.topLeft,
+            end: FractionalOffset.bottomRight,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
