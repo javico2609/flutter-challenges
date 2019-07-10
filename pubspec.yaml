@@ -31,7 +31,7 @@ dependencies:
   flutter_redux:
   redux_logging:
   get_it:
-  flushbar: "1.5.3"
+  flushbar: ^1.7.1+1
   mapbox_gl: ^0.0.3
   sqflite: ^1.1.0
   json_annotation: ^2.4.0
@@ -45,6 +45,7 @@ dependencies:
   local_auth:
   reselect: 0.4.0
   share_extend: ^1.0.9
+  flare_flutter: ^1.5.4
 
 dev_dependencies:
   build_runner: ^1.0.0
@@ -66,6 +67,7 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
+    - assets/demo.flr
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
@@ -89,6 +91,10 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/roboto/Roboto-Regular.ttf
+
+    - family: Gotham
+      fonts:
+        - asset: assets/fonts/gotham/GothamThin.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

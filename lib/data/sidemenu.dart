@@ -192,4 +192,11 @@ List<MenuModel> menu = [
     type: MenuItemType.CODE,
     isRoot: false,
   ),
+  new MenuModel(
+    title: 'Stayfit Healt template',
+    icon: Icons.favorite,
+    route: NavigationConstrants.StayfitHealthHome,
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
 ];

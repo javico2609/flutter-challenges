@@ -31,6 +31,7 @@ import 'package:playground_flutter/pages/templates/rahul-sliver-profile-demo/rah
 import 'package:playground_flutter/pages/templates/real-estate-clone/real-estate-home.dart';
 import 'package:playground_flutter/pages/templates/smart-home-clone/smart-home-home.dart';
 import 'package:playground_flutter/pages/templates/smart-plant-clone/smart-plant-home.dart';
+import 'package:playground_flutter/pages/templates/stayfit-health-clone/stayfit-health-home.dart';
 import 'package:playground_flutter/pages/templates/trending.dart';
 import 'package:playground_flutter/pages/templates/whatsapp-clone/whatsapp_home.dart';
 import 'package:playground_flutter/services/notification.service.dart';
@@ -97,6 +98,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, DownloadAndSharePage());
     case NavigationConstrants.ScreenshotDemo:
       return buildRoute(settings, ScreenshotPage());
+    case NavigationConstrants.StayfitHealthHome:
+      return buildRoute(settings, StayfitHealthPage());
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
       return buildNotification(NotificationService.successFactory());

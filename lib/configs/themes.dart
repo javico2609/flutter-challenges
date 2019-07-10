@@ -7,7 +7,8 @@ enum Themes {
   gameOrganizer,
   smartHome,
   networkGas,
-  sliverProfile
+  sliverProfile,
+  stayfit,
 }
 
 ThemeData getThemeByType(Themes type) {
@@ -59,6 +60,13 @@ ThemeData getThemeByType(Themes type) {
             color: Colors.black,
           )),
           fontFamily: 'Roboto',
+        );
+      }
+    case Themes.stayfit:
+      {
+        return ThemeData(
+          brightness: Brightness.light,
+          fontFamily: 'Gotham',
         );
       }
     default:
