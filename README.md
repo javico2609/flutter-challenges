@@ -1,6 +1,6 @@
 # Flutter UI demos
 
-###### Here you can find examples like Flutter Animation, Redux, Firebase and Google Auth, Sqlite and Firebase CRUD, Generate + Load + View PDF and CSV, Webview, Ioc, MapBox, Download and shared files and many more.
+###### 18 templates, Redux, CRUD Sqlite and Firebase, http request, webview, google and firebase auth, global notification strategy create and preview PDF, create and load csv, pagination, infinite scroll, touch id, map, change theme, custom fonts, download & share files and more.
 
 ### Screenshots
 
