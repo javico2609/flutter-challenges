@@ -40,5 +40,6 @@ class NavigationConstrants {
   static const String TouchIdDemo = "/TouchIdDemo";
   static const String DownloadAndShareDemo = "/DownloadAndShareDemo";
   static const String ScreenshotDemo = "/ScreenshotDemo";
-  static const String StayfitHealthHome = "/StayfitHealthHome";
+  static const String CalculatorChecklistHome = "/CalculatorChecklist";
+  static const String StayfitHealthHome = "/StayfitHealth";
 }

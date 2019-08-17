@@ -199,4 +199,11 @@ List<MenuModel> menu = [
     type: MenuItemType.TEMPLATE,
     isRoot: true,
   ),
+  new MenuModel(
+    title: 'Calculator Checklist template',
+    icon: Icons.casino,
+    route: NavigationConstrants.CalculatorChecklistHome,
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
 ];

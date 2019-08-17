@@ -18,6 +18,7 @@ import 'package:playground_flutter/pages/code_examples/screenshots/screenshots.d
 import 'package:playground_flutter/pages/code_examples/sqlite/sqlite.dart';
 import 'package:playground_flutter/pages/code_examples/touchid/touchid.dart';
 import 'package:playground_flutter/pages/code_examples/webview/webview.dart';
+import 'package:playground_flutter/pages/templates/calculator-check-list-clone/calculator-check-list.dart';
 import 'package:playground_flutter/pages/templates/crypto-blockchain-wallet-clone/crypto-blockchain-wallet.dart';
 import 'package:playground_flutter/pages/templates/daycare-clone/daycare-home.dart';
 import 'package:playground_flutter/pages/templates/furniture-clone/furniture-home.dart';
@@ -100,6 +101,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, ScreenshotPage());
     case NavigationConstrants.StayfitHealthHome:
       return buildRoute(settings, StayfitHealthPage());
+    case NavigationConstrants.CalculatorChecklistHome:
+      return buildRoute(settings, CalculatorChecklistHome());
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
       return buildNotification(NotificationService.successFactory());

@@ -9,6 +9,7 @@ enum Themes {
   networkGas,
   sliverProfile,
   stayfit,
+  calculator
 }
 
 ThemeData getThemeByType(Themes type) {
@@ -69,6 +70,17 @@ ThemeData getThemeByType(Themes type) {
           fontFamily: 'Gotham',
         );
       }
+    case Themes.calculator:
+      return ThemeData(
+        brightness: Brightness.dark,
+        fontFamily: 'Roboto',
+        backgroundColor: Color(0xff464c51),
+        textTheme: TextTheme(
+          body1: TextStyle(
+            letterSpacing: 1.3,
+          ),
+        ),
+      );
     default:
       return ThemeData(
         brightness: Brightness.light,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 const String flutterUrl = "https://flutter.dev/";
-const String wikiUrl = "https://es.wikipedia.org";
+const String wikiUrl = "https://google.com";
 
 class WebviewFlutter extends StatelessWidget {
   WebViewController _controller;
@@ -25,7 +25,7 @@ class WebviewFlutter extends StatelessWidget {
     var url = await _controller.currentUrl();
     _controller.loadUrl(
       url == "https://flutter.dev/"
-          ? 'https://es.wikipedia.org'
+          ? 'https://google.com'
           : "https://flutter.dev/",
     );
   }
