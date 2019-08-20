@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground_flutter/bloc/theme.bloc.dart';
 import 'package:playground_flutter/configs/themes.dart';
 import 'package:playground_flutter/pages/templates/calculator-check-list-clone/tab-indicator.dart';
+import 'package:playground_flutter/store/reducers/stack_overflow.reducer.dart';
 
 class CalculatorChecklistHome extends StatefulWidget {
   CalculatorChecklistHome({Key key}) : super(key: key);
@@ -76,7 +77,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                   controller: _controller,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(20),
                       child: Column(
                         children: <Widget>[
                           Column(
@@ -196,7 +197,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Container(
-                                        width: size.width * .5,
+                                        width: size.width * .55,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -249,9 +250,167 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                         ),
                                       ),
                                       Container(
-                                        width: size.width * .4,
+                                        width: size.width * .3,
                                         child: Container(
-                                          color: Colors.blue,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  _optionItem(
+                                                    Text(
+                                                      '/',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    () => _operation('/'),
+                                                    Color(0xff91eff6),
+                                                  ),
+                                                  _optionItem(
+                                                    Text(
+                                                      'x',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    () => _operation('*'),
+                                                    Color(0xff91eff6),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      width: 45,
+                                                      height: 100,
+                                                      child: Material(
+                                                        color:
+                                                            Color(0xff91eff6),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      30.0),
+                                                        ),
+                                                        child: InkWell(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      30.0),
+                                                          onTap: () {},
+                                                          child: Icon(
+                                                            Icons.add,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 45,
+                                                      height: 108,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: <Widget>[
+                                                          _optionItem(
+                                                            Text(
+                                                              '-',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            () =>
+                                                                _operation('-'),
+                                                            Color(0xff91eff6),
+                                                          ),
+                                                          _optionItem(
+                                                            Text(
+                                                              '%',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            () =>
+                                                                _operation('%'),
+                                                            Color(0xff91eff6),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: size.width * .3,
+                                                height: 38,
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: Material(
+                                                  color: Color(0xffedffc5),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0),
+                                                  ),
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0),
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        'Enter',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       )
                                     ],
@@ -297,9 +456,11 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
     );
   }
 
-  Widget _optionItem(Widget child, [Function callback]) {
+  Widget _optionItem(Widget child, [Function callback, Color color]) {
+    color = color ?? Color(0xff464c51);
     return FloatingActionButton(
-      backgroundColor: Color(0xff464c51),
+      heroTag: uuid(),
+      backgroundColor: color,
       mini: true,
       onPressed: callback,
       elevation: 0,
