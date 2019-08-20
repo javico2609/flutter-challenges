@@ -100,11 +100,16 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                     ),
                                   ),
                                   SizedBox(width: 10),
-                                  Text(
-                                    "2.4K",
-                                    style: TextStyle(
-                                      fontSize: 90,
-                                    ),
+                                  StreamBuilder<double>(
+                                    stream: operationsBloc.total(),
+                                    builder: (_, sn) {
+                                      return Text(
+                                        sn.hasData ? sn.data.toString() : '0',
+                                        style: TextStyle(
+                                          fontSize: 80,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
