@@ -57,7 +57,6 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                       color: Color(0xff9fadb8),
                     ),
                   ),
-                  //indicatorPadding: const EdgeInsets.symmetric(horizontal: 15),
                   tabs: <Widget>[
                     Tab(
                       child: Text(
@@ -100,7 +99,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                     ),
                                   ),
                                   SizedBox(width: 10),
-                                  StreamBuilder<double>(
+                                  StreamBuilder(
                                     stream: operationsBloc.total(),
                                     builder: (_, sn) {
                                       return Text(
@@ -148,7 +147,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                       ),
                                     ),
                                     if (snapshot.hasData)
-                                      ...snapshot.data.map((Operation op) {
+                                      ...snapshot.data.map((op) {
                                         return Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
@@ -252,6 +251,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                                       color: Colors.white,
                                                     ),
                                                   ),
+                                                  () => _operation('0'),
                                                 ),
                                                 _optionItem(
                                                   Text(
@@ -262,6 +262,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                                       color: Colors.white,
                                                     ),
                                                   ),
+                                                  () => _operation('.'),
                                                 ),
                                                 _optionItem(
                                                     Icon(
@@ -383,7 +384,6 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                                     borderRadius: BorderRadius.circular(30.0),
                                                   ),
                                                   child: InkWell(
-                                                    borderRadius: BorderRadius.circular(30.0),
                                                     onTap: () {
                                                       Parser p = new Parser();
                                                       ContextModel cm = new ContextModel();
@@ -405,6 +405,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                                         });
                                                       } catch (e) {}
                                                     },
+                                                    borderRadius: BorderRadius.circular(30.0),
                                                     child: Container(
                                                       alignment: Alignment.center,
                                                       child: Text(
@@ -417,7 +418,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                                     ),
                                                   ),
                                                 ),
-                                              ),
+                                              )
                                             ],
                                           ),
                                         ),
@@ -427,14 +428,14 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                     Container(),
                   ],
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -446,21 +447,19 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome> with Sing
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        ...items
-            .map(
-              (i) => _optionItem(
-                Text(
-                  i,
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                () => _operation(i),
+        ...items.map(
+          (i) => _optionItem(
+            Text(
+              i,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-            )
-            .toList()
+            ),
+            () => _operation(i),
+          ),
+        )
       ],
     );
   }

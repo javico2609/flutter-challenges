@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:rxdart/subjects.dart';
 
 class Operation {
   final double value;
@@ -16,8 +17,8 @@ class Operation {
 
 class OperationsBloc {
   List<Operation> _operations = [];
-  final StreamController<List<Operation>> _operations$ = StreamController.broadcast();
-  final StreamController<double> _total$ = StreamController<double>();
+  final ReplaySubject<List<Operation>> _operations$ = new ReplaySubject();
+  final ReplaySubject<double> _total$ = new ReplaySubject();
 
   OperationsBloc() {
     _operations$.stream.listen(_computeTotal);
@@ -52,4 +53,4 @@ class OperationsBloc {
   }
 }
 
-final operationsBloc = OperationsBloc();
+final operationsBloc = new OperationsBloc();
