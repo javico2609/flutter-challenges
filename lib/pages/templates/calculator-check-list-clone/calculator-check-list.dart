@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:playground_flutter/bloc/theme.bloc.dart';
 import 'package:playground_flutter/configs/themes.dart';
+import 'package:playground_flutter/pages/templates/calculator-check-list-clone/calculator_bloc.dart';
 import 'package:playground_flutter/pages/templates/calculator-check-list-clone/tab-indicator.dart';
 import 'package:playground_flutter/store/reducers/stack_overflow.reducer.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorChecklistHome extends StatefulWidget {
   CalculatorChecklistHome({Key key}) : super(key: key);
@@ -10,8 +12,7 @@ class CalculatorChecklistHome extends StatefulWidget {
   _CalculatorChecklistState createState() => _CalculatorChecklistState();
 }
 
-class _CalculatorChecklistState extends State<CalculatorChecklistHome>
-    with SingleTickerProviderStateMixin {
+class _CalculatorChecklistState extends State<CalculatorChecklistHome> with SingleTickerProviderStateMixin {
   TabController _controller;
   String _currentOperation = "";
 
@@ -25,6 +26,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
   @override
   void dispose() {
     _controller.dispose();
+    operationsBloc.dispose();
     super.dispose();
   }
 
@@ -109,28 +111,55 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                             ],
                           ),
                           Expanded(
-                            child: ListView(
-                              reverse: true,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                            child: StreamBuilder<List<Operation>>(
+                              stream: operationsBloc.operations(),
+                              builder: (_, snapshot) {
+                                return ListView(
+                                  reverse: true,
                                   children: <Widget>[
-                                    Visibility(
-                                      visible: _currentOperation.length > 0,
-                                      child: InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            _currentOperation = "";
-                                          });
-                                        },
-                                        child: Icon(Icons.close),
+                                    Container(
+                                      height: 60,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Visibility(
+                                            visible: _currentOperation.length > 0,
+                                            child: InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  _currentOperation = "";
+                                                });
+                                              },
+                                              child: Icon(Icons.close),
+                                            ),
+                                          ),
+                                          Text(
+                                            _currentOperation,
+                                            style: TextStyle(
+                                              fontSize: 25,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Text(_currentOperation)
+                                    if (snapshot.hasData)
+                                      ...snapshot.data.map((Operation op) {
+                                        return Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            InkWell(
+                                              onTap: () {
+                                                operationsBloc.deleteOperation(op);
+                                              },
+                                              child: Icon(Icons.close),
+                                            ),
+                                            Text(op.value.toString()),
+                                          ],
+                                        );
+                                      }).toList(),
                                   ],
-                                ),
-                              ],
+                                );
+                              },
                             ),
                           ),
                           SizedBox(height: 10),
@@ -145,8 +174,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                         color: Color(0xff464c51),
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
+                                          borderRadius: BorderRadius.circular(7),
                                           side: BorderSide(
                                             color: Color(0xff63696e),
                                           ),
@@ -169,8 +197,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                         color: Color(0xff464c51),
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
+                                          borderRadius: BorderRadius.circular(7),
                                           side: BorderSide(
                                             color: Color(0xff63696e),
                                           ),
@@ -191,16 +218,13 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                 ),
                                 Expanded(
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Container(
                                         width: size.width * .55,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             _buildRegularOptions(
                                               ['7', '8', '9'],
@@ -212,17 +236,14 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                               ['1', '2', '3'],
                                             ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: <Widget>[
                                                 _optionItem(
                                                   Text(
                                                     "0",
                                                     style: TextStyle(
                                                       fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                       color: Colors.white,
                                                     ),
                                                   ),
@@ -232,18 +253,20 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                                     ".",
                                                     style: TextStyle(
                                                       fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                       color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
                                                 _optionItem(
-                                                  Icon(
-                                                    Icons.arrow_back,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
+                                                    Icon(
+                                                      Icons.arrow_back,
+                                                      color: Colors.white,
+                                                    ), () {
+                                                  setState(() {
+                                                    _currentOperation = _currentOperation.substring(0, _currentOperation.length - 1);
+                                                  });
+                                                }),
                                               ],
                                             ),
                                           ],
@@ -253,25 +276,19 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                         width: size.width * .3,
                                         child: Container(
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: <Widget>[
                                                   _optionItem(
                                                     Text(
                                                       '/',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                        fontWeight: FontWeight.bold,
                                                       ),
                                                     ),
                                                     () => _operation('/'),
@@ -280,12 +297,10 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                                   _optionItem(
                                                     Text(
                                                       'x',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                        fontWeight: FontWeight.bold,
                                                       ),
                                                     ),
                                                     () => _operation('*'),
@@ -294,34 +309,22 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5),
+                                                padding: const EdgeInsets.only(left: 5),
                                                 child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: <Widget>[
                                                     Container(
                                                       width: 45,
                                                       height: 100,
                                                       child: Material(
-                                                        color:
-                                                            Color(0xff91eff6),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30.0),
+                                                        color: Color(0xff91eff6),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(30.0),
                                                         ),
                                                         child: InkWell(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30.0),
-                                                          onTap: () {},
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                          onTap: () => _operation('+'),
                                                           child: Icon(
                                                             Icons.add,
                                                             color: Colors.black,
@@ -333,42 +336,30 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                                       width: 45,
                                                       height: 108,
                                                       child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         children: <Widget>[
                                                           _optionItem(
                                                             Text(
                                                               '-',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                              textAlign: TextAlign.center,
                                                               style: TextStyle(
                                                                 fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                fontWeight: FontWeight.bold,
                                                               ),
                                                             ),
-                                                            () =>
-                                                                _operation('-'),
+                                                            () => _operation('-'),
                                                             Color(0xff91eff6),
                                                           ),
                                                           _optionItem(
                                                             Text(
                                                               '%',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                              textAlign: TextAlign.center,
                                                               style: TextStyle(
                                                                 fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                fontWeight: FontWeight.bold,
                                                               ),
                                                             ),
-                                                            () =>
-                                                                _operation('%'),
+                                                            () => _operation('%'),
                                                             Color(0xff91eff6),
                                                           ),
                                                         ],
@@ -380,27 +371,40 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
                                               Container(
                                                 width: size.width * .3,
                                                 height: 38,
-                                                padding: const EdgeInsets.only(
-                                                    left: 10),
+                                                padding: const EdgeInsets.only(left: 10),
                                                 child: Material(
                                                   color: Color(0xffedffc5),
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30.0),
+                                                    borderRadius: BorderRadius.circular(30.0),
                                                   ),
                                                   child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30.0),
-                                                    onTap: () {},
+                                                    borderRadius: BorderRadius.circular(30.0),
+                                                    onTap: () {
+                                                      Parser p = new Parser();
+                                                      ContextModel cm = new ContextModel();
+
+                                                      try {
+                                                        Expression exp = p.parse(_currentOperation);
+                                                        var value = exp.evaluate(EvaluationType.REAL, cm).toString();
+
+                                                        operationsBloc.addOperation(
+                                                          new Operation(
+                                                            id: uuid(),
+                                                            value: double.parse(value),
+                                                            description: 'Op',
+                                                          ),
+                                                        );
+
+                                                        setState(() {
+                                                          _currentOperation = '';
+                                                        });
+                                                      } catch (e) {}
+                                                    },
                                                     child: Container(
-                                                      alignment:
-                                                          Alignment.center,
+                                                      alignment: Alignment.center,
                                                       child: Text(
                                                         'Enter',
-                                                        textAlign:
-                                                            TextAlign.center,
+                                                        textAlign: TextAlign.center,
                                                         style: TextStyle(
                                                           color: Colors.black,
                                                         ),
@@ -470,7 +474,7 @@ class _CalculatorChecklistState extends State<CalculatorChecklistHome>
 
   _operation(String action) {
     setState(() {
-      _currentOperation = "$_currentOperation $action";
+      _currentOperation = "$_currentOperation$action";
     });
   }
 }
