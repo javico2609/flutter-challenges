@@ -6,6 +6,9 @@ import 'package:playground_flutter/store/store.dart';
 
 class Environment {
   static setup() async {
+    // Make sure that the binary messenger binding are properly initialiazed
+    WidgetsFlutterBinding.ensureInitialized();
+
     // lock orientation position
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
