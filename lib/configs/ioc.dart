@@ -6,7 +6,7 @@ import 'package:playground_flutter/services/stack_overflow.service.dart';
 import 'package:playground_flutter/services/web.client.dart';
 import 'package:playground_flutter/shared/utils/touchid.util.dart';
 
-final GetIt ioc = new GetIt();
+final GetIt ioc = GetIt.instance;
 
 class Ioc {
   static setupIocDependency() {
@@ -14,12 +14,11 @@ class Ioc {
     ioc.registerSingleton<StackOverflowService>(new StackOverflowService());
     ioc.registerSingleton<SqliteDatabaseService>(new SqliteDatabaseService());
     ioc.registerSingleton<SqliteBaseballService>(new SqliteBaseballService());
-    ioc.registerSingleton<FirebaseBaseballService>(
-        new FirebaseBaseballService());
+    ioc.registerSingleton<FirebaseBaseballService>(new FirebaseBaseballService());
     ioc.registerSingleton<TouchIdUtil>(new TouchIdUtil());
   }
 
   static T get<T>() {
-    return ioc<T>();
+    return ioc.get<T>();
   }
 }
