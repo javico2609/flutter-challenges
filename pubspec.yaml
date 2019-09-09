@@ -30,7 +30,7 @@ dependencies:
   webview_flutter:
   flutter_redux:
   redux_logging:
-  get_it:
+  get_it: ^1.1.0
   flushbar: ^1.7.1+1
   mapbox_gl: ^0.0.3
   sqflite: ^1.1.0
