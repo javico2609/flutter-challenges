@@ -206,4 +206,11 @@ List<MenuModel> menu = [
     type: MenuItemType.TEMPLATE,
     isRoot: true,
   ),
+  new MenuModel(
+    title: 'Hotels Booking template',
+    icon: Icons.book,
+    route: NavigationConstrants.QuantHotelsBookingPage,
+    type: MenuItemType.TEMPLATE,
+    isRoot: true,
+  ),
 ];

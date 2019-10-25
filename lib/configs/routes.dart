@@ -28,6 +28,7 @@ import 'package:playground_flutter/pages/templates/hospital-dashboard-clone/hosp
 import 'package:playground_flutter/pages/templates/network-of-gas-stations-clone/network-of-gas-stations-home.dart';
 import 'package:playground_flutter/pages/templates/news-app-concept-clone/news-app-concept-home.dart';
 import 'package:playground_flutter/pages/templates/profile-one.dart';
+import 'package:playground_flutter/pages/templates/quant-hotels-booking-clone/quant-hotels-booking-clone.dart';
 import 'package:playground_flutter/pages/templates/rahul-sliver-profile-demo/rahul-sliver-profile.dart';
 import 'package:playground_flutter/pages/templates/real-estate-clone/real-estate-home.dart';
 import 'package:playground_flutter/pages/templates/smart-home-clone/smart-home-home.dart';
@@ -103,6 +104,8 @@ Route generateRoutes(RouteSettings settings) {
       return buildRoute(settings, StayfitHealthPage());
     case NavigationConstrants.CalculatorChecklistHome:
       return buildRoute(settings, CalculatorChecklistHome());
+    case NavigationConstrants.QuantHotelsBookingPage:
+      return buildRoute(settings, QuantHotelsBookingPage());
     // TODO: notification section
     case NavigationConstrants.NOTIFICATION_SUCCESS:
       return buildNotification(NotificationService.successFactory());

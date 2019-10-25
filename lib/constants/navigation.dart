@@ -10,8 +10,7 @@ class NavigationConstrants {
 
   // Pages routes
   static const String BottomBarWithFloatButton = "/BottomBarWithFloatButton";
-  static const String ThreeDimenssionBottomNavigationBar =
-      "/ThreeDimenssionBottomNavigationBar";
+  static const String ThreeDimenssionBottomNavigationBar = "/ThreeDimenssionBottomNavigationBar";
   static const String Trending = "/Trending";
   static const String ProfileOne = "/ProfileOne";
   static const String WhatsApp = "/WhatsApp";
@@ -42,4 +41,5 @@ class NavigationConstrants {
   static const String ScreenshotDemo = "/ScreenshotDemo";
   static const String CalculatorChecklistHome = "/CalculatorChecklist";
   static const String StayfitHealthHome = "/StayfitHealth";
+  static const String QuantHotelsBookingPage = "/QuantHotelsBookingPage";
 }
